@@ -1,0 +1,23 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import sad from '../assets/sad.png'
+
+interface SessionExpiredScreenProps {}
+
+const SessionExpiredScreen: React.FC<SessionExpiredScreenProps> = () => {
+  return (
+    <main className="page">
+      <h1>Session expired</h1>
+      <img src={sad} alt="sad smiley" className="w-[110px]" />
+      <p className="max-w-[390px] page-content">
+        No action was found on the board within expected period of time. Try
+        verifying again.
+      </p>
+      <Link className="button" to="/">
+        Reset
+      </Link>
+    </main>
+  )
+}
+
+export default SessionExpiredScreen

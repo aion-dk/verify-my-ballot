@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  h1 {
+    @apply text-brand-dark text-xl font-bold text-center md:text-2xl
+  }
+
+  h3 {
+    @apply text-brand-dark text-lg font-bold text-center md:text-xl
+  }
+
+  .page-content {
+    @apply text-center text-lg text-brand-dark md:text-xl
+  }
+
+  /* Clip pattern: https://www.a11yproject.com/posts/how-to-hide-content/ */
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .button {
+    @apply bg-brand-blue text-white flex items-center justify-center px-[30px] py-[7px] font-bold text-base rounded-full 
+  }
+
+  .secondary-button {
+    @apply text-[#808080]
+  }
+
+  .page {
+    @apply px-[15px] bg-brand-background relative flex flex-col items-center md:p-[30px] h-full  gap-[28px] pt-[80px] md:pt-[150px]
+  }
+
+  a {
+    @apply text-lg
+  }
+
+  li {
+    @apply list-disc
+  }
+
+  input {
+    @apply min-w-[250px] text-center text-base py-[10px] outline-none rounded-full border-[1px] border-brand-dark text-brand-blue font-semibold
+  }
+
+  .highlight {
+    @apply font-semibold text-brand-blue
+  }
+
+  .key {
+    @apply text-4xl text-brand-blue font-semibold
+  }
+
+  .circle {
+    /* @apply w-[30px] h-[30px] rounded-full border-slate-600 text-slate-600 border-[3px] shrink-0 flex justify-center items-center font-semibold relative */
+    @apply w-[30px] h-[30px] rounded-full border-[#ccc] text-[#ccc] border-[3px] shrink-0 flex justify-center items-center font-semibold relative
+  }
+
+  .step {
+    @apply flex items-center w-full
+  }
+
+  .bar {
+    /* @apply h-[8px] bg-slate-400 w-full */
+    @apply h-[8px] bg-slate-300 w-full
+  }
+
+  .step-text {
+    /* @apply  md:whitespace-nowrap text-center text-xs md:text-base text-slate-600 font-bold flex justify-center w-[40px] */
+    @apply  md:whitespace-nowrap text-center text-xs md:text-base text-[#ccc] font-bold flex justify-center w-[40px]
+  }
+
+  .active {
+    @apply text-brand-blue border-brand-blue 
+  }
+
+  .current {
+    @apply text-brand-dark border-brand-dark 
+  }
+
+
+  .stripes {
+    background-image: repeating-linear-gradient(145deg, #1226aa, #1226aa 5px, #fff 5px, #fff 7px);
+    background-size: 7em 7em, 5em 5em, 3em 3em, 1em 1em;
+  }
+}
+
+
+
+.tiles {
+  background-image: url('./assets/tile.png');
+  background-size: 10px;
+  background-repeat: space;
+  background-position: 100%;
+}
+
+@media (min-width: 768px) {
+  .tiles {
+    background-size: 8px;
+  }
+}
+
+
+
+
+body {
+  margin: 0;
+  font-family: 'Calibri', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: max-content;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

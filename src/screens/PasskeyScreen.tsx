@@ -1,0 +1,50 @@
+import React, { useCallback } from 'react'
+import { useParams } from 'react-router-dom'
+import VerifierClient from '../VerifierClient'
+import TimeoutModal from '../components/TimeoutModal'
+import usePollingScreenTimeout from '../hooks/usePollingScreenTimeout'
+
+interface PasskeyScreenProps {}
+
+const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
+  const { pairingCode } = useParams<{ pairingCode: string }>()
+
+  const pollingAction = useCallback(async () => {
+    try {
+      console.debug('Polling for commitment opening...')
+      await VerifierClient.pollForCommitmentOpening()
+      console.debug('Done polling!')
+    } catch (e) {
+      console.debug('An error occured while polling for commitment opening...')
+      console.debug(e)
+    }
+  }, [])
+
+  const nextPage = useCallback(() => '/unsealed-ballot', [])
+
+  const [timeout, modalOpen, setModalOpen] = usePollingScreenTimeout(
+    pollingAction,
+    nextPage
+  )
+
+  return (
+    <main className="page">
+      <h1>Passkey</h1>
+      <p className="max-w-[420px] page-content">
+        Please confirm that the following key matches the one displayed in the
+        Mark.It app.
+      </p>
+      <div className="key" data-cy="pairing-code">
+        {pairingCode}
+      </div>
+
+      <TimeoutModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        timeout={timeout}
+      />
+    </main>
+  )
+}
+
+export default PasskeyScreen
