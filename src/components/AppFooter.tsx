@@ -38,7 +38,6 @@ const AppFooter: React.FC<AppFooterProps> = () => {
   useEffect(() => {
     const stepElements = document.querySelectorAll('.step')
     const textElements = document.querySelectorAll('.text-elm')
-    console.log(textElements)
 
     const activeIndex = steps.findIndex(object => {
       return location.pathname.includes(object.url)
@@ -93,7 +92,7 @@ const AppFooter: React.FC<AppFooterProps> = () => {
       <div className="flex items-end mb-[16px] justify-between pl-[36px] md:pl-[110px] lg:pl-[146px] w-[350px] md:w-[700px] lg:w-[900px]">
         {steps.map((step, index) => {
           return (
-            <div className="step-text text-elm">
+            <div className="step-text text-elm" key={index}>
               <div>{step.name}</div>{' '}
             </div>
           )

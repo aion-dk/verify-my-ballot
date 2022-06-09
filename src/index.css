@@ -60,8 +60,8 @@
   }
 
   .circle {
-    /* @apply w-[30px] h-[30px] rounded-full border-slate-600 text-slate-600 border-[3px] shrink-0 flex justify-center items-center font-semibold relative */
-    @apply w-[30px] h-[30px] rounded-full border-[#ccc] text-[#ccc] border-[3px] shrink-0 flex justify-center items-center font-semibold relative
+    @apply w-[30px] h-[30px] rounded-full border-slate-600 text-slate-600 border-[3px] shrink-0 flex justify-center items-center font-semibold relative
+    /* @apply w-[30px] h-[30px] rounded-full border-[#ccc] text-[#ccc] border-[3px] shrink-0 flex justify-center items-center font-semibold relative */
   }
 
   .step {
@@ -69,13 +69,13 @@
   }
 
   .bar {
-    /* @apply h-[8px] bg-slate-400 w-full */
-    @apply h-[8px] bg-slate-300 w-full
+    @apply h-[8px] bg-slate-400 w-full
+    /* @apply h-[8px] bg-slate-300 w-full */
   }
 
   .step-text {
-    /* @apply  md:whitespace-nowrap text-center text-xs md:text-base text-slate-600 font-bold flex justify-center w-[40px] */
-    @apply  md:whitespace-nowrap text-center text-xs md:text-base text-[#ccc] font-bold flex justify-center w-[40px]
+    @apply  md:whitespace-nowrap text-center text-xs md:text-base text-slate-600 font-bold flex justify-center w-[40px]
+    /* @apply  md:whitespace-nowrap text-center text-xs md:text-base text-[#ccc] font-bold flex justify-center w-[40px] */
   }
 
   .active {
