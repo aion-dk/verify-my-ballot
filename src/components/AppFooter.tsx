@@ -50,12 +50,26 @@ const AppFooter: React.FC<AppFooterProps> = () => {
 
       if (i <= activeIndex) {
         if (i === activeIndex) {
+          console.log(i)
+          console.log('Active index: ' + activeIndex)
+
+          //Remove earlier classes
+          circle.classList.remove('current')
+          bar.classList.remove('tiles')
+          text.classList.remove('current')
+
           //Active page
           step.classList.add('active')
-          circle.classList.add('active')
+          circle.classList.add('active-circle')
           text.classList.add('active')
           bar.classList.add('stripes')
         } else {
+          //Remove earlier classes
+          step.classList.remove('active')
+          circle.classList.remove('active-circle')
+          text.classList.remove('active')
+          bar.classList.remove('stripes')
+
           //Has been visited
           step.classList.add('current')
           circle.classList.add('current')
@@ -69,7 +83,7 @@ const AppFooter: React.FC<AppFooterProps> = () => {
         text.classList.remove('current')
         text.classList.remove('active')
         circle.classList.remove('current')
-        circle.classList.remove('active')
+        circle.classList.remove('active-circle')
         bar.classList.remove('stripes')
         bar.classList.remove('tiles')
       }
@@ -107,6 +121,7 @@ const AppFooter: React.FC<AppFooterProps> = () => {
                 className={`bar ${index === 0 ? 'rounded-l-full' : ''}`}
               ></div>
               <div className="circle">{index + 1}</div>
+              {/*  active-circle */}
             </div>
           )
         })}
