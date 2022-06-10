@@ -1,0 +1,14 @@
+version: "3"
+services:
+  verifier:
+    # image: "534003348933.dkr.ecr.eu-west-1.amazonaws.com/verify-my-ballot:main"
+    image: "verify-my-ballot:latest"
+    build: "."
+    command: "yarn start"
+    ports:
+      - "3005:3000"
+    volumes:
+      - "./:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    environment:
+      REACT_APP_DEFAULT_ELECTION_URL: "http://host.docker.internal:3003/us"
