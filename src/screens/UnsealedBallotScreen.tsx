@@ -26,7 +26,7 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
       setContestSelections(ballot)
     } catch (e) {
       console.debug(e)
-      navigate('/')
+      if (process.env.NODE_ENV === 'production') navigate('/')
     }
   }, [navigate])
 

@@ -50,9 +50,6 @@ const AppFooter: React.FC<AppFooterProps> = () => {
 
       if (i <= activeIndex) {
         if (i === activeIndex) {
-          console.log(i)
-          console.log('Active index: ' + activeIndex)
-
           //Remove earlier classes
           circle.classList.remove('current')
           bar.classList.remove('tiles')

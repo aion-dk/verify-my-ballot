@@ -5,22 +5,23 @@ import {
 } from '@aion-dk/js-client/dist/lib/av_client/types'
 import { MOCK_RESPONSE_MS } from './constants'
 
-const MOCKED_BALLOTS_DB: { [trackingCode: string]: ContestSelection[] } = {
-  '12345': [
-    {
-      optionSelections: [{ reference: 'A' }],
-      reference: '1',
-    },
-    {
-      optionSelections: [{ reference: 'B' }],
-      reference: '2',
-    },
-    {
-      optionSelections: [{ reference: 'C' }],
-      reference: '3',
-    },
-  ],
-}
+export const MOCKED_BALLOTS_DB: { [trackingCode: string]: ContestSelection[] } =
+  {
+    '12345': [
+      {
+        optionSelections: [{ reference: 'A' }],
+        reference: '1',
+      },
+      {
+        optionSelections: [{ reference: 'B' }],
+        reference: '2',
+      },
+      {
+        optionSelections: [{ reference: 'C' }],
+        reference: '3',
+      },
+    ],
+  }
 
 export default class MockVerifierClient extends AVVerifier {
   private _init = false
