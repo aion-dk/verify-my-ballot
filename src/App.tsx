@@ -7,8 +7,16 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const initialize = async () => {
-      await VerifierClient.initialize()
-      setInitialized(true)
+      try {
+        await VerifierClient.initialize()
+      } catch (e) {
+        console.error(
+          'There was an error while initializing js-client, the site will not work properly in this state.'
+        )
+        console.error(e)
+      } finally {
+        setInitialized(true)
+      }
     }
 
     initialize()
