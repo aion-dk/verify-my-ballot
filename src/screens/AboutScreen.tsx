@@ -35,7 +35,7 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
             <span className="font-semibold">A: </span>
             This site cannot submit your ballot for casting. Remember when
             finished with the ballot check, you must submit your ballot from the
-            MarkIt app to complete the voting process.
+            Mark.It app to complete the voting process.
           </span>
         </p>
       </div>
