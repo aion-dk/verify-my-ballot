@@ -1,0 +1,3 @@
+#!/bin/sh
+
+DOCKER_BUILDKIT=1 docker build -t verify-my-ballot:latest --ssh default .
