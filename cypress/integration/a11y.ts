@@ -38,36 +38,32 @@ context('Accessibility', () => {
 
     firstQuestion.should(
       'contain.text',
-      'Q: Where do I find my ballot tracking code?'
+      'Where do I find my ballot tracking code?'
     )
-    firstQuestion
-      .type('{enter}')
-      .should('contain.text', 'A: You must submit your ballot from')
+    firstQuestion.type('{enter}').should('contain.text', 'Placeholder answer')
 
     // Can tab and open second question
     const secondQuestion = firstQuestion.tab()
     secondQuestion.should(
       'contain.text',
-      'Q: My ballot is not found. After I input the ballot tracking code, I am getting an error message.'
+      'My ballot is not found. After I input the ballot tracking code, I am getting an error message.'
     )
-    secondQuestion
-      .type('{enter}')
-      .should('contain.text', 'A: You must submit your ballot from')
+    secondQuestion.type('{enter}').should('contain.text', 'Placeholder answer')
 
     // Can close the question again
     secondQuestion
       .type('{enter}')
-      .should('not.contain.text', 'A: You must submit your ballot from')
+      .should('not.contain.text', 'Placeholder answer')
 
     // Can tab multiple times and open last question
     const lastQuestion = secondQuestion.tab().tab().tab()
     lastQuestion.should(
       'contain.text',
-      'Q: I want to submit my ballot. What do I do?'
+      'I want to submit my ballot. What do I do?'
     )
     lastQuestion
       .type('{enter}')
-      .should('contain.text', 'A: You must submit your ballot from')
+      .should('contain.text', 'You must submit your ballot from')
 
     // Can cycle and wrap through the menus with the arrow keys
 
@@ -81,8 +77,8 @@ context('Accessibility', () => {
 
     // The focused menu should now be the first question, and still be open
     cy.focused()
-      .should('contain.text', 'Q: Where do I find my ballot tracking code?')
-      .and('contain.text', 'A: You must submit your ballot from')
+      .should('contain.text', 'Where do I find my ballot tracking code?')
+      .and('contain.text', 'Placeholder answer')
 
     // Press arrow up once
     cy.focused().trigger('keydown', {
@@ -92,8 +88,8 @@ context('Accessibility', () => {
 
     // It should now wrap around and be equivalent to the last question
     cy.focused()
-      .should('contain.text', 'Q: I want to submit my ballot. What do I do?')
-      .and('contain.text', 'A: You must submit your ballot from')
+      .should('contain.text', 'I want to submit my ballot. What do I do?')
+      .and('contain.text', 'You must submit your ballot from')
 
     // Press arrow down twice
     for (let i = 0; i < 2; i++) {
@@ -107,9 +103,9 @@ context('Accessibility', () => {
     cy.focused()
       .should(
         'contain.text',
-        'Q: My ballot is not found. After I input the ballot tracking code, I am getting an error message.'
+        'My ballot is not found. After I input the ballot tracking code, I am getting an error message.'
       )
-      .and('contain.text', 'A: You must submit your ballot from')
+      .and('contain.text', 'Placeholder answer')
   })
 
   it('should change active element focus to modal upon opening it', () => {
