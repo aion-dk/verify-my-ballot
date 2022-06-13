@@ -15,7 +15,6 @@ export default function usePollingScreenTimeout<T>(
   // Base timeout
   const onTimeout = useCallback(() => {
     navigate('/expired')
-    window.location.reload()
   }, [navigate])
   const [timeout, startTimeout] = useTimeout({
     intervalTimeout: 1000,
