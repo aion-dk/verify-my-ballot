@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import VerifierClient from '../VerifierClient'
 import TimeoutModal from '../components/TimeoutModal'
 import usePollingScreenTimeout from '../hooks/usePollingScreenTimeout'
+import AccessibleSpan from '../components/AccessibleSpan'
 
 interface PasskeyScreenProps {}
 
@@ -34,12 +35,10 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
         Please confirm that the following key matches the one displayed in the
         Mark.It app.
       </p>
-      <p
-        className="key"
-        data-cy="pairing-code"
-        aria-label={`The passkey is: ${pairingCode}`}
-      >
-        {pairingCode}
+      <p className="key" data-cy="pairing-code">
+        <AccessibleSpan screenReaderText={`The passkey is: ${pairingCode}`}>
+          {pairingCode}
+        </AccessibleSpan>
       </p>
 
       <TimeoutModal

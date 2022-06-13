@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaQuestionCircle } from 'react-icons/fa'
+import AccessibleSpan from '../components/AccessibleSpan'
 
 interface AboutScreenProps {}
 
@@ -29,13 +30,16 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
         </div>
         <p className="flex flex-col">
           <span className="font-semibold">
-            <span aria-label="Question:">Q: </span>Can i submit my ballot on
-            this site?
+            <AccessibleSpan screenReaderText="Question:">Q: </AccessibleSpan>
+            Can i submit my ballot on this site?
           </span>
           <span className="max-w-[320px]">
-            <span className="font-semibold" aria-label="Answer:">
+            <AccessibleSpan
+              screenReaderText="Answer:"
+              className="font-semibold"
+            >
               A:{' '}
-            </span>
+            </AccessibleSpan>
             This site cannot submit your ballot for casting. Remember when
             finished with the ballot check, you must submit your ballot from the
             Mark.It app to complete the voting process.

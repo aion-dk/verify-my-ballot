@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { GoPlus } from 'react-icons/go'
 import { ImMinus } from 'react-icons/im'
+import AccessibleSpan from '../components/AccessibleSpan'
 import { mod } from '../utils'
 
 // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/menuitem_role
@@ -80,7 +81,7 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
       >
         <div className="flex justify-between h-[60px] pl-[6px]">
           <p>
-            <span aria-label="Question:">Q: </span>
+            <AccessibleSpan screenReaderText="Question:">Q: </AccessibleSpan>
             <span className="font-semibold">{faq.question}</span>
           </p>
           <div className="self-center mr-[6px]">
@@ -94,9 +95,12 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
         </div>
 
         <p className="bg-white text-brand-dark p-[8px] text-[18px]">
-          <span className="text-[18px] font-semibold" aria-label="Answer:">
+          <AccessibleSpan
+            screenReaderText="Answer:"
+            className="text-[18px] font-semibold"
+          >
             A:{' '}
-          </span>
+          </AccessibleSpan>
           {faq.answer}
         </p>
       </li>
@@ -120,7 +124,8 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
         }}
       >
         <p>
-          Q: <span className="font-semibold">{faq.question}</span>
+          <AccessibleSpan screenReaderText="Question:">Q: </AccessibleSpan>
+          <span className="font-semibold">{faq.question}</span>
         </p>
         <div>
           <GoPlus

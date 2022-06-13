@@ -32,8 +32,8 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
 
           try {
             console.debug('Finding ballot...')
-            const ballot = await VerifierClient.findBallot(ballotCheckingCode)
-            console.debug(ballot)
+            await VerifierClient.findBallot(ballotCheckingCode)
+            console.debug('Ballot found!')
             navigate('/ballot-found')
           } catch (e) {
             console.debug('An error occured while finding ballot:')
