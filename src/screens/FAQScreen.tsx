@@ -80,7 +80,8 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
       >
         <div className="flex justify-between h-[60px] pl-[6px]">
           <p>
-            Q: <span className="font-semibold">{faq.question}</span>
+            <span aria-label="Question:">Q: </span>
+            <span className="font-semibold">{faq.question}</span>
           </p>
           <div className="self-center mr-[6px]">
             <ImMinus
@@ -93,7 +94,9 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
         </div>
 
         <p className="bg-white text-brand-dark p-[8px] text-[18px]">
-          <span className="text-[18px] font-semibold">A: </span>
+          <span className="text-[18px] font-semibold" aria-label="Answer:">
+            A:{' '}
+          </span>
           {faq.answer}
         </p>
       </li>

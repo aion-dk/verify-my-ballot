@@ -29,10 +29,13 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
         </div>
         <p className="flex flex-col">
           <span className="font-semibold">
-            Q: Can i submit my ballot on this site?
+            <span aria-label="Question:">Q: </span>Can i submit my ballot on
+            this site?
           </span>
           <span className="max-w-[320px]">
-            <span className="font-semibold">A: </span>
+            <span className="font-semibold" aria-label="Answer:">
+              A:{' '}
+            </span>
             This site cannot submit your ballot for casting. Remember when
             finished with the ballot check, you must submit your ballot from the
             Mark.It app to complete the voting process.
