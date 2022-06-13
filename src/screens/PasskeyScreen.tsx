@@ -34,9 +34,13 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
         Please confirm that the following key matches the one displayed in the
         Mark.It app.
       </p>
-      <div className="key" data-cy="pairing-code">
+      <p
+        className="key"
+        data-cy="pairing-code"
+        aria-label={`The passkey is: ${pairingCode}`}
+      >
         {pairingCode}
-      </div>
+      </p>
 
       <TimeoutModal
         isOpen={modalOpen}
