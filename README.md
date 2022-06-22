@@ -9,6 +9,7 @@ This is the repository regarding the example implementation of a VerifyMyBallot 
 - [Running](#running)
 - [Building](#building)
 - [Testing](#testing)
+- [Strict mode](#strict-mode)
 - [Documentation](#documentation)
   * [JS Client](#js-client)
     + [MockVerifierClient](#mockverifierclient)
