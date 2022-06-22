@@ -68,6 +68,14 @@ You can also open the test development environment with hot-reloading with:
 yarn e2e-dev
 ```
 
+## Strict mode
+
+By default the web app is being run without Strict Mode enabled in development - if you wish to test out the app in strict mode, you can do so by running:
+
+```bash
+yarn start-strict
+```
+
 ## Documentation
 
 The project is written in React with TypeScript, bootstrapped with [Create React App](https://create-react-app.dev/) and styled using [Tailwind](https://tailwindcss.com/).

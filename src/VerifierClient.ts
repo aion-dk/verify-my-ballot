@@ -1,4 +1,4 @@
-import { AVVerifier } from '@aion-dk/js-client'
+import { AVClient, AVVerifier } from '@aion-dk/js-client'
 import { DEFAULT_ELECTION_URL } from './constants'
 import MockVerifierClient from './MockVerifierClient'
 

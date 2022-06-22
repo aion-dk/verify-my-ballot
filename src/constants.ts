@@ -13,3 +13,5 @@ export const TIMEOUT_REMINDER_TIME = _timeoutReminderTime
   : process.env.REACT_APP_TESTING
   ? MOCK_RESPONSE_MS / 1000 / 2 // half of mock response time, so you can see the popup
   : 15
+
+export const STRICT_MODE = process.env.REACT_APP_STRICT || false // default false

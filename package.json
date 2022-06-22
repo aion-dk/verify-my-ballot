@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-strict": "REACT_APP_STRICT=true react-scripts start",
     "build": "react-scripts build",
     "test": "cypress run-ct",
     "test-dev": "cypress open-ct",
