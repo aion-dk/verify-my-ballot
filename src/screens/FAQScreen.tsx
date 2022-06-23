@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { GoPlus } from 'react-icons/go'
-import { ImMinus } from 'react-icons/im'
+import { GoPlus, GoDash } from 'react-icons/go'
 import AccessibleSpan from '../components/AccessibleSpan'
 import { mod } from '../utils'
 
@@ -61,7 +60,7 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
     return (
       <li
         key={i}
-        className="w-[94%] md:w-[750px] lg:w-[850px] bg-brand-blue p-[1px] pt-[4px] text-white border-[3px] border-brand-blue cursor-pointer"
+        className="w-[94%] md:w-[750px] list-none lg:w-[850px] bg-brand-blue dark:bg-transparent p-[1px] pt-[4px] text-white border-[3px] border-brand-blue dark:border-white cursor-pointer"
         id={`faq-${i}`}
         onClick={() => handleChange(i)}
         role="menuitem"
@@ -85,16 +84,11 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
             <span className="font-semibold">{faq.question}</span>
           </p>
           <div className="self-center mr-[6px]">
-            <ImMinus
-              color="#C04535"
-              size="20px"
-              title="Close menu"
-              aria-hidden="true"
-            />
+            <GoDash color="#C04535" title="Close menu" aria-hidden="true" />
           </div>
         </div>
 
-        <p className="bg-white text-brand-dark p-[8px] text-[18px]">
+        <p className="bg-white text-brand-dark dark:bg-transparent dark:text-white dark:border-t-2 p-[8px] text-[18px]">
           <AccessibleSpan
             screenReaderText="Answer:"
             className="text-[18px] font-semibold"
@@ -111,7 +105,7 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
     return (
       <li
         key={i}
-        className="w-[90%] md:w-[700px] lg:w-[800px] bg-brand-background cursor-pointer border-[3px] mb-[-3px] border-white  pl-[16px] pr-[4px] py-[8px] flex items-center justify-between"
+        className="w-[90%] md:w-[700px] lg:w-[800px] bg-brand-background dark:bg-transparent cursor-pointer border-[3px] mb-[-3px] border-white  pl-[16px] pr-[4px] py-[8px] flex items-center justify-between"
         id={`faq-${i}`}
         onClick={() => handleChange(i)}
         role="menuitem"
@@ -127,13 +121,8 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
           <AccessibleSpan screenReaderText="Question:">Q: </AccessibleSpan>
           <span className="font-semibold">{faq.question}</span>
         </p>
-        <div>
-          <GoPlus
-            color="#1226aa"
-            size="26px"
-            title="Open menu"
-            aria-hidden="true"
-          />
+        <div className="text-brand-blue dark:text-white">
+          <GoPlus size="26px" title="Open menu" aria-hidden="true" />
         </div>
       </li>
     )

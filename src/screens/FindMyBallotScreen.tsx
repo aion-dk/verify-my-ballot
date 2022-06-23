@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { getTheme } from '../utils'
 import VerifierClient from '../VerifierClient'
 
 interface FindMyBallotScreenProps {}
@@ -15,6 +16,11 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
   if (inputError) {
     inputAriaAttributes['aria-invalid'] = true
     inputAriaAttributes['aria-errormessage'] = 'ballot-code-invalid'
+  }
+
+  const getBg = () => {
+    if (getTheme() === 'light') return 'orange'
+    else return 'yellow'
   }
 
   return (
@@ -44,10 +50,12 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
       >
         <div
           id="ballot-code-invalid"
-          className="bg-brand-orange p-[25px] max-w-[420px] mb-[20px]"
+          className="bg-brand-orange dark:bg-brand-yellow p-[25px] max-w-[420px] mb-[20px]"
           style={{ display: inputError ? 'block' : 'none' }}
         >
-          <h3 className="mb-[20px] ">Tracking Code Not Found</h3>
+          <h3 className="mb-[20px] dark:text-brand-darkBackground">
+            Tracking Code Not Found
+          </h3>
           <p className="font-bold text-center text-brand-dark">
             Please verify you entered the tracking code correctly. Be sure to
             match case.
@@ -60,7 +68,7 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
           required
           placeholder="Ballot checking code"
           className="placeholder-gray-300"
-          style={{ borderColor: inputError ? 'orange' : '#000' }}
+          style={{ borderColor: inputError ? getBg() : '#000' }}
           data-cy="ballot-checking-code"
           {...inputAriaAttributes}
         />

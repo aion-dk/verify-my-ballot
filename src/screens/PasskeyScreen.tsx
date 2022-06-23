@@ -35,7 +35,7 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
         Please confirm that the following key matches the one displayed in the
         Mark.It app.
       </p>
-      <p className="key" data-cy="pairing-code">
+      <p className="key dark:text-white" data-cy="pairing-code">
         <AccessibleSpan screenReaderText={`The passkey is: ${pairingCode}`}>
           {pairingCode}
         </AccessibleSpan>

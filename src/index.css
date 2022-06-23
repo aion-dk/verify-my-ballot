@@ -5,15 +5,15 @@
 
 @layer components {
   h1 {
-    @apply text-brand-dark text-xl font-bold text-center md:text-2xl
+    @apply text-brand-dark text-xl font-bold text-center md:text-2xl dark:text-white
   }
 
   h3 {
-    @apply text-brand-dark text-lg font-bold text-center md:text-xl
+    @apply text-brand-dark text-lg font-bold text-center md:text-xl dark:text-white
   }
 
   .page-content {
-    @apply text-center text-lg text-brand-dark md:text-xl
+    @apply text-center text-lg text-brand-dark md:text-xl dark:text-white
   }
 
   /* Clip pattern: https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -28,15 +28,11 @@
   }
 
   .button {
-    @apply bg-brand-blue text-white flex items-center justify-center px-[30px] py-[7px] font-bold text-base rounded-full 
-  }
-
-  .secondary-button {
-    @apply text-[#808080]
+    @apply bg-brand-blue text-white flex items-center justify-center px-[30px] py-[10px] font-bold text-base rounded-full dark:bg-transparent dark:border-2 dark:border-white
   }
 
   .page {
-    @apply px-[15px] bg-brand-background relative flex flex-col items-center md:p-[30px] h-full  gap-[28px] pt-[80px] md:pt-[150px]
+    @apply px-[15px] bg-brand-background dark:bg-brand-darkBackground dark:text-white relative flex flex-col items-center md:p-[30px] h-full  gap-[28px] pt-[80px] md:pt-[150px]
   }
 
   a {
@@ -48,11 +44,11 @@
   }
 
   input {
-    @apply min-w-[250px] text-center text-base py-[10px] outline-none rounded-full border-[1px] border-brand-dark text-brand-blue font-semibold
+    @apply min-w-[250px] text-center text-base py-[14px] outline-none rounded-full border-[1px] border-brand-dark text-brand-blue font-semibold dark:text-brand-dark
   }
 
   .highlight {
-    @apply font-semibold text-brand-blue
+    @apply font-semibold text-brand-blue dark:text-white
   }
 
   .key {
@@ -60,44 +56,53 @@
   }
 
   .circle {
-    @apply w-[30px] h-[30px] rounded-full border-slate-600 text-slate-600 border-[3px] shrink-0 flex justify-center items-center font-semibold relative
+    @apply w-[30px] h-[30px] rounded-full border-slate-400 text-slate-400 border-[3px] shrink-0 flex justify-center items-center font-semibold relative
   }
 
   .step {
-    @apply flex items-center w-full
+    @apply flex items-center w-full 
   }
 
   .bar {
-    @apply h-[8px] bg-slate-400 w-full
+    @apply h-[8px] bg-slate-400 w-full dark:bg-slate-400
   }
 
   .step-text {
-    @apply  md:whitespace-nowrap text-center text-xs md:text-base text-slate-600 font-bold flex justify-center w-[40px]
+    @apply  md:whitespace-nowrap text-center text-xs md:text-base text-slate-400 font-bold flex justify-center w-[40px]
   }
 
   .active {
-    @apply text-brand-blue border-brand-blue text-[16px] md:text-[21px]
+    @apply text-brand-blue border-brand-blue dark:border-white dark:text-white text-[16px] md:text-[21px]
   }
 
   .active-circle {
-    @apply text-brand-blue border-brand-blue w-[38px] h-[38px]
+    @apply text-brand-blue border-brand-blue w-[38px] h-[38px] dark:border-white dark:text-white
   }
 
   .current {
-    @apply text-brand-dark border-brand-dark 
-  }
-
-
-  .stripes {
-    background-image: repeating-linear-gradient(145deg, #1226aa, #1226aa 5px, #fff 5px, #fff 7px);
-    background-size: 7em 7em, 5em 5em, 3em 3em, 1em 1em;
+    @apply text-brand-dark border-brand-dark dark:text-[#DFDFDF] dark:border-white
   }
 }
 
 
+:root {
+  --color_01: #2239A9;
+  --pattern: url('./assets/pattern-1.png');
+}
+
+[data-theme="dark"] {
+  --color_01: #2239A9;
+  --pattern: url('./assets/pattern-2.png');
+}
+
+.stripes {
+  background-image: repeating-linear-gradient(145deg, var(--color_01), var(--color_01) 5px, #fff 5px, #fff 7px);
+  background-size: 7em 7em, 5em 5em, 3em 3em, 1em 1em;
+}
+
 
 .tiles {
-  background-image: url('./assets/tile.png');
+  background-image: var(--pattern);
   background-size: 10px;
   background-repeat: space;
   background-position: 100%;

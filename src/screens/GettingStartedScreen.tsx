@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { FiChevronRight } from 'react-icons/fi'
 
 interface GettingStartedScreenProps {}
 
@@ -21,11 +21,7 @@ const GettingStartedScreen: React.FC<GettingStartedScreenProps> = () => {
         className="button"
       >
         Get started
-        <MdOutlineKeyboardArrowRight
-          color="#fff"
-          size="28px"
-          aria-hidden="true"
-        />
+        <FiChevronRight color="#fff" size="24px" aria-hidden="true" />
       </button>
     </main>
   )

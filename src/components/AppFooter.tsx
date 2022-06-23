@@ -99,7 +99,7 @@ const AppFooter: React.FC<AppFooterProps> = () => {
   }
 
   return (
-    <footer className="bg-brand-background py-[30px] flex flex-col items-center">
+    <footer className="bg-brand-background dark:bg-brand-darkBackground py-[30px] flex flex-col items-center">
       <div className="flex items-end mb-[16px] justify-between pl-[36px] md:pl-[110px] lg:pl-[146px] w-[350px] md:w-[700px] lg:w-[900px]">
         {steps.map((step, index) => {
           return (
