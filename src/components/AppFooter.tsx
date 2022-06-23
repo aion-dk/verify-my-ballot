@@ -118,7 +118,6 @@ const AppFooter: React.FC<AppFooterProps> = () => {
                 className={`bar ${index === 0 ? 'rounded-l-full' : ''}`}
               ></div>
               <div className="circle">{index + 1}</div>
-              {/*  active-circle */}
             </div>
           )
         })}

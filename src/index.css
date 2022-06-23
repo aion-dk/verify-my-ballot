@@ -56,7 +56,7 @@
   }
 
   .circle {
-    @apply w-[30px] h-[30px] rounded-full border-slate-400 text-slate-400 border-[3px] shrink-0 flex justify-center items-center font-semibold relative
+    @apply w-[30px] h-[30px] rounded-full border-slate-400 text-[#627289]  border-[3px] shrink-0 flex justify-center items-center font-semibold relative
   }
 
   .step {
@@ -68,7 +68,7 @@
   }
 
   .step-text {
-    @apply  md:whitespace-nowrap text-center text-xs md:text-base text-slate-400 font-bold flex justify-center w-[40px]
+    @apply  md:whitespace-nowrap text-center text-xs md:text-base text-[#627289] font-bold flex justify-center w-[40px]
   }
 
   .active {
