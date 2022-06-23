@@ -35,8 +35,8 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
       <h1>Unsealed ballot</h1>
       <ul className="mb-[20px]" data-cy="ballot-choices">
         {contestSelections.map(cs => (
-          <li key={cs.reference}>
-            <span className="font-bold">{cs.title}:</span>{' '}
+          <li key={cs.reference} className="dark:text-white">
+            <span className="font-bold dark:text-white">{cs.title}:</span>{' '}
             {cs.optionSelections[0]?.title}
           </li>
         ))}

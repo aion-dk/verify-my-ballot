@@ -8,3 +8,7 @@ export function formatTimeoutDuration(durationMs: number) {
 export function mod(n: number, m: number) {
   return ((n % m) + m) % m
 }
+
+export const getTheme = () => {
+  return localStorage.getItem('color-theme')
+}

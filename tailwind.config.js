@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: 'class',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
@@ -24,7 +25,9 @@ module.exports = {
           dark: '#1d1934',
           blue: '#1226aa',
           background: '#F8F8F8',
-          orange: '#EBAC76'
+          orange: '#EBAC76',
+          'yellow': '#FDF367',
+          'darkBackground': '#1A1A1A'
         },
       },
     },

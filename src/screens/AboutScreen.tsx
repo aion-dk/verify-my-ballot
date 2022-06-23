@@ -19,10 +19,9 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
 
       <div className="h-[2px] w-[60px] bg-red-500"></div>
 
-      <div className="border-[2px] border-dotted border-brand-dark flex items-center p-[8px] mt-[80px] md:mt-[110px]">
-        <div className="px-[8px]">
+      <div className="border-[2px] border-dotted border-brand-dark dark:border-white flex items-center p-[8px] mt-[80px] md:mt-[110px]">
+        <div className="px-[8px] text-brand-blue dark:text-white">
           <FaQuestionCircle
-            color="#1226aa"
             size="50px"
             aria-label="Question mark icon"
             title="Question mark icon"
