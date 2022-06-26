@@ -16,7 +16,7 @@ interface TextResizerProps {}
 
 const TextResizer: React.FC<TextResizerProps> = () => {
   return (
-    <div className="flex items-center bg-white dark:bg-transparent py-[6px] px-[6px] rounded-full border-[2px] border-brand-dark dark:border-white">
+    <div className="flex items-center bg-white dark:bg-transparent py-[6px] px-[6px] rounded-full border-[2px] border-brand-dark dark:border-white dark:text-white">
       <button
         className="mr-[18px] ml-[8px] active:font-bold"
         onClick={() => changeRootFontSize(-2)}
