@@ -88,7 +88,7 @@ const AccessibilityPopup: React.FC<TimeoutModalProps> = ({
         </button>
         <button
           onClick={() => changeTheme('dark')}
-          aria-label="high contrast"
+          aria-label="dark contrast"
           className={`contrast-button mt-4 dark:bg-white dark:text-brand-darkBackground dark:border-white`}
         >
           <IoMoon size="36px" />
