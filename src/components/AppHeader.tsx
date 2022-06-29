@@ -16,12 +16,14 @@ const AppHeader: React.FC<AppHeaderProps> = () => {
       <Link to="/">(Insert customer logo)</Link>
       <nav className="flex space-x-[20px] md:space-x-[40px] items-center ">
         <AccessibilityPopup isOpen={modal} onClose={() => setModal(false)} />
-        <TbAccessible
-          onClick={() => setModal(true)}
-          aria-label="accessibility menu icon"
-          size="30px"
-          className="cursor-pointer"
-        />
+        <a href="#">
+          <TbAccessible
+            onClick={() => setModal(true)}
+            aria-label="accessibility menu icon"
+            size="30px"
+            className="cursor-pointer"
+          />
+        </a>
 
         <Link to="/about">About</Link>
         <Link to="/faq">FAQ</Link>
