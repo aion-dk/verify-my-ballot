@@ -36,7 +36,7 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
     <main className="page">
       <h1>Ballot found</h1>
       <p className="max-w-[280px] page-content">
-        Tap the <span className="highlight">Code entered</span> button in the
+        Tap the <b className="highlight">Code entered</b> button in the
         Mark.It app.
       </p>
 

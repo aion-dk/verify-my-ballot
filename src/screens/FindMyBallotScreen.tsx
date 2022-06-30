@@ -28,7 +28,7 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
       <h1>Find my ballot</h1>
       <p className="max-w-[260px] page-content">
         Enter the ballot checking code displayed in the Mark.It app and click{' '}
-        <span className="highlight">Enter</span>
+        <b className="highlight">Enter</b>
       </p>
 
       <form
