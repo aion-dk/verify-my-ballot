@@ -1,7 +1,7 @@
 import { MOCK_RESPONSE_MS } from '../../src/constants'
 
 context('Accessibility', () => {
-  it('can resize font sizes', () => {
+  it.skip('can resize font sizes', () => {
     cy.visit('http://localhost:3000')
 
     // starts with default 16px
