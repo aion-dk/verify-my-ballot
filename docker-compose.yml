@@ -1,8 +1,8 @@
 version: "3"
 services:
   verifier:
-    image: "534003348933.dkr.ecr.eu-west-1.amazonaws.com/verify-my-ballot:main"
-    #image: "verify-my-ballot:latest"
+    # image: "534003348933.dkr.ecr.eu-west-1.amazonaws.com/verify-my-ballot:main"
+    image: "verify-my-ballot:latest"
     build: "."
     command: "yarn start"
     ports:
