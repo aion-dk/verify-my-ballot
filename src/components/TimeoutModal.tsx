@@ -50,6 +50,9 @@ const TimeoutModal: React.FC<TimeoutModalProps> = ({
           >
             Time left: {formatTimeoutDuration(timeout)}
           </p>
+          <p>
+            <button className="button" type="button" onClick={() => {onClose()} }>Close</button>
+          </p>
         </div>
       </div>
     </Modal>
