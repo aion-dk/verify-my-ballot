@@ -8,7 +8,7 @@ const GettingStartedScreen: React.FC<GettingStartedScreenProps> = () => {
   const navigate = useNavigate()
 
   return (
-    <main className="page ">
+    <main id="content" className="page ">
       <h1>Welcome to the VerifyMyBallot Site</h1>
       <p className="max-w-[320px] page-content">
         Use this site to verify your ballot was recorded and sealed correctly.

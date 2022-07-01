@@ -6,7 +6,7 @@ interface SessionExpiredScreenProps {}
 
 const SessionExpiredScreen: React.FC<SessionExpiredScreenProps> = () => {
   return (
-    <main className="page">
+    <main id="content" className="page">
       <h1>Session expired</h1>
       {/* <img src={sad} alt="sad smiley" className="w-[110px]" /> */}
       <div className="text-brand-dark dark:text-white">

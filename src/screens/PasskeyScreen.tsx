@@ -29,7 +29,7 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
   )
 
   return (
-    <main className="page">
+    <main id="content" className="page">
       <h1>Passkey</h1>
       <p className="max-w-[420px] page-content">
         Please confirm that the following key matches the one displayed in the
