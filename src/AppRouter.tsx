@@ -19,11 +19,20 @@ import { wrapHistory } from 'oaf-react-router'
 const history = createBrowserHistory()
 wrapHistory(history)
 
+// Listen for router changes and focus root element for improved accessibility
+history.listen(() => {
+  let root = document.getElementById('root')
+  if(root) root.focus()
+})
+
 interface AppRouterProps {}
 
 const AppRouter: React.FC<AppRouterProps> = () => {
   return (
     <HistoryRouter history={history}>
+      <a href="#content" className="sr-only focus:not-sr-only">
+        Skip to content
+      </a>
       <div className="flex flex-col h-screen">
         <AppHeader />
 

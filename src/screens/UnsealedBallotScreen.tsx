@@ -31,7 +31,7 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
   }, [navigate])
 
   return (
-    <main className="page">
+    <main id="content" className="page">
       <h1>Unsealed ballot</h1>
       <ul className="mb-[20px]" data-cy="ballot-choices">
         {contestSelections.map(cs => (

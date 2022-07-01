@@ -129,7 +129,7 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
   }
 
   return (
-    <main className="page">
+    <main id="content" className="page">
       <h1>Frequently Asked Questions</h1>
       <ul className="flex flex-col items-center" role="menu" data-cy="faq-menu">
         {faqs.map((faq, i) => {

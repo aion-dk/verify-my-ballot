@@ -6,7 +6,7 @@ interface AboutScreenProps {}
 
 const AboutScreen: React.FC<AboutScreenProps> = () => {
   return (
-    <main className="page">
+    <main id="content" className="page">
       <h1>About VerifyMyBallot site</h1>
       <p className="max-w-[440px] page-content" role="text">
         This site serves as a ballot checking site to enable you to

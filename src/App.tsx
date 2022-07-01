@@ -24,7 +24,7 @@ const App: React.FC = () => {
 
   if (!initialized) return <></>
 
-  return <AppRouter />
+  return <div id="root"><AppRouter /></div>
 }
 
 export default App

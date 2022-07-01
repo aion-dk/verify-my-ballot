@@ -33,7 +33,7 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
   >(pollingAction, nextPage)
 
   return (
-    <main className="page">
+    <main id="content" className="page">
       <h1>Ballot found</h1>
       <p className="max-w-[280px] page-content" role="text">
         Tap the <strong>Code entered</strong> button in the
