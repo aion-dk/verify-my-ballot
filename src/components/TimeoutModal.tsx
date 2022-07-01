@@ -23,6 +23,7 @@ const customStyles = {
 interface TimeoutModalProps {
   timeout: number
   isOpen: boolean
+  body: any
   onClose: () => void
 }
 

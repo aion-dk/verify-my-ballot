@@ -123,7 +123,7 @@ context('Accessibility', () => {
     cy.wait(MOCK_RESPONSE_MS / 2).then(() => {
       cy.focused().should(
         'contain.text',
-        'You have to confirm that the pairing codes match in the Mark.It app.'
+        'Tap the Code entered button in the Mark.It app.'
       )
     })
   })
