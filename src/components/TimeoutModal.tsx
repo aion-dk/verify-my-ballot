@@ -30,6 +30,7 @@ const TimeoutModal: React.FC<TimeoutModalProps> = ({
   timeout,
   isOpen,
   onClose,
+  body
 }) => {
   return (
     <Modal
@@ -41,7 +42,7 @@ const TimeoutModal: React.FC<TimeoutModalProps> = ({
       <div className="flex justify-center items-center" data-cy="timeout-modal">
         <div className="w-[90%] md:w-[600px] h-[500px] bg-white dark:bg-brand-darkBackground shadow-2xl rounded-[20px] flex flex-col items-center justify-center gap-[40px] px-[10px]">
           <p className="page-content w-[60%] dark:text-white">
-            You have to confirm that the pairing codes match in the Mark.It app.
+            {body}
           </p>
           <p
             className="text-brand-dark text-xl font-bold text-center md:text-2xl dark:text-white"

@@ -44,6 +44,10 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         timeout={timeout}
+        body={<p role="text">
+          Tap the <strong>Code entered</strong> button in the
+          Mark.It app.
+        </p>}
       />
     </main>
   )

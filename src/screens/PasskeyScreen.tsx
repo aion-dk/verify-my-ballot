@@ -45,6 +45,7 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         timeout={timeout}
+        body={"You have to confirm that the pairing codes match in the Mark.It app."}
       />
     </main>
   )
