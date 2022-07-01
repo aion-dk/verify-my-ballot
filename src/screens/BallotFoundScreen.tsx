@@ -35,8 +35,8 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
   return (
     <main className="page">
       <h1>Ballot found</h1>
-      <p className="max-w-[280px] page-content">
-        Tap the <b className="highlight">Code entered</b> button in the
+      <p className="max-w-[280px] page-content" role="text">
+        Tap the <strong>Code entered</strong> button in the
         Mark.It app.
       </p>
 
@@ -44,6 +44,10 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         timeout={timeout}
+        body={<p role="text">
+          Tap the <strong>Code entered</strong> button in the
+          Mark.It app.
+        </p>}
       />
     </main>
   )
