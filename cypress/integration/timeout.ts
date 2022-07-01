@@ -36,7 +36,7 @@ it('respects timeout on ballot found...', () => {
     cy.get('[data-cy=timeout-modal]', { timeout: 1000 }).should('exist')
 
     cy.contains(
-      'You have to confirm that the pairing codes match in the Mark.It app.'
+      'Tap the Code entered button in the Mark.It app.'
     )
 
     cy.location('pathname', { timeout: LONGER_THAN_TIMEOUT }).should(
