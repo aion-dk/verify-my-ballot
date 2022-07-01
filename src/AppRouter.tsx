@@ -21,14 +21,16 @@ wrapHistory(history)
 
 //
 const focusRoot = () => {
-  document.getElementById('root').focus()
+  let root = document.getElementById('root')
+
+  if(root) root.focus()
 }
 
 interface AppRouterProps {}
 
 const AppRouter: React.FC<AppRouterProps> = () => {
   return (
-    <HistoryRouter history={history} id="root" onChange={focusRoot}>
+    <HistoryRouter history={history} id="root" onUpdate={focusRoot}>
       <a href="#content" className="sr-only focus:not-sr-only">
         Skip to content
       </a>
