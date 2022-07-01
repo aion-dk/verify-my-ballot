@@ -8,12 +8,12 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
   return (
     <main className="page">
       <h1>About VerifyMyBallot site</h1>
-      <p className="max-w-[440px] page-content">
+      <p className="max-w-[440px] page-content" role="text">
         This site serves as a ballot checking site to enable you to
-        <b className="highlight">
+        <strong>
           {' '}
           verify that your ballot was recorded correctly{' '}
-        </b>
+        </strong>
         in your voting app and will be cast correctly in the digital ballot box.
       </p>
 
