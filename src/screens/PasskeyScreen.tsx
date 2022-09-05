@@ -1,14 +1,17 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import VerifierClient from '../VerifierClient'
 import TimeoutModal from '../components/TimeoutModal'
 import usePollingScreenTimeout from '../hooks/usePollingScreenTimeout'
 import AccessibleSpan from '../components/AccessibleSpan'
+import ClientContext from '../contexts/ClientContext'
+import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 
 interface PasskeyScreenProps {}
 
 const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
   const { pairingCode } = useParams<{ pairingCode: string }>()
+  const VerifierClient = useContext(ClientContext)
+  const linkResolver = useBoardSlugLinkResolver()
 
   const pollingAction = useCallback(async () => {
     try {
@@ -19,9 +22,12 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
       console.debug('An error occured while polling for commitment opening...')
       console.debug(e)
     }
-  }, [])
+  }, [VerifierClient])
 
-  const nextPage = useCallback(() => '/unsealed-ballot', [])
+  const nextPage = useCallback(
+    () => linkResolver('/unsealed-ballot'),
+    [linkResolver]
+  )
 
   const [timeout, modalOpen, setModalOpen] = usePollingScreenTimeout(
     pollingAction,
@@ -45,7 +51,9 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         timeout={timeout}
-        body={"You have to confirm that the pairing codes match in the Mark.It app."}
+        body={
+          'You have to confirm that the pairing codes match in the Mark.It app.'
+        }
       />
     </main>
   )

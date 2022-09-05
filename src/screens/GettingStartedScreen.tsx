@@ -1,11 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FiChevronRight } from 'react-icons/fi'
+import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 
 interface GettingStartedScreenProps {}
 
 const GettingStartedScreen: React.FC<GettingStartedScreenProps> = () => {
   const navigate = useNavigate()
+  const linkResolver = useBoardSlugLinkResolver()
 
   return (
     <main id="content" className="page ">
@@ -16,7 +18,7 @@ const GettingStartedScreen: React.FC<GettingStartedScreenProps> = () => {
       <button
         data-cy="get-started-button"
         onClick={() => {
-          navigate('/find-my-ballot')
+          navigate(linkResolver('/find-my-ballot'))
         }}
         className="button"
       >
