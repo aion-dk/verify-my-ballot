@@ -1,7 +1,7 @@
 import { AVVerifier } from '@aion-dk/js-client'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { BASE_ELECTION_URL, FALLBACK_BOARD_SLUG } from '../constants'
+import { useNavigate, useParams } from 'react-router-dom'
+import { BASE_ELECTION_URL } from '../constants'
 import ClientContext from '../contexts/ClientContext'
 import MockVerifierClient from '../MockVerifierClient'
 
@@ -17,6 +17,7 @@ const VerifierClientProvider: React.FC<{ children?: React.ReactNode }> = ({
 }) => {
   const { boardSlug } = useParams<{ boardSlug: string }>()
   const [verifierClient, setVerifierClient] = useState<AVVerifier>()
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function initialize() {
@@ -24,33 +25,28 @@ const VerifierClientProvider: React.FC<{ children?: React.ReactNode }> = ({
       if (process.env.REACT_APP_TESTING) {
         client = mockClient
       } else {
-        client = new AVVerifier(
-          `${BASE_ELECTION_URL}/${boardSlug || FALLBACK_BOARD_SLUG}`
-        )
+        client = new AVVerifier(`${BASE_ELECTION_URL}/${boardSlug}`)
       }
 
       try {
-        console.debug(
-          `Initializing client with board slug: '${
-            boardSlug || FALLBACK_BOARD_SLUG
-          }'`
-        )
+        console.debug(`Initializing client with board slug: '${boardSlug}'`)
         await client.initialize()
       } catch (e) {
         console.error(
           'There was an error while initializing js-client, the site will not work properly in this state.'
         )
         console.error(e)
-        window.alert(
-          'A valid election could not be loaded based on the inferred information'
-        )
+        navigate('error')
+        // window.alert(
+        //   'A valid election could not be loaded based on the inferred information'
+        // )
       } finally {
         setVerifierClient(client)
       }
     }
 
     initialize()
-  }, [boardSlug])
+  }, [boardSlug, navigate])
 
   if (!verifierClient) return <></>
 

@@ -14,8 +14,8 @@ import SessionExpiredScreen from './screens/SessionExpiredScreen'
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import { wrapHistory } from 'oaf-react-router'
-import { FALLBACK_BOARD_SLUG } from './constants'
 import VerifierClientProvider from './containers/VerifierClientProvider'
+import ErrorScreen from './screens/ErrorScreen'
 
 // Patch react-router with accessible SPA navigation with page announcements and focus
 const history = createBrowserHistory()
@@ -38,10 +38,8 @@ const AppRouter: React.FC<AppRouterProps> = () => {
       <div className="flex flex-col h-screen">
         <Routes>
           <Route element={<PageLayout />}>
-            <Route
-              index
-              element={<Navigate to={`/${FALLBACK_BOARD_SLUG}`} />}
-            />
+            <Route index element={<Navigate to="error" />} />
+            <Route path="error" element={<ErrorScreen />} />
             <Route path=":boardSlug">
               <Route index element={<GettingStartedScreen />} />
               <Route path="about" element={<AboutScreen />} />
