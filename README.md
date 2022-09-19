@@ -4,24 +4,26 @@ This is the repository regarding the example implementation of a VerifyMyBallot 
 
 ## Contents
 
-- [Installing](#installing)
-- [Environment variables](#environment-variables)
-- [Running](#running)
-- [Building](#building)
-- [Testing](#testing)
-- [Strict mode](#strict-mode)
-- [Documentation](#documentation)
-  * [JS Client](#js-client)
-    + [MockVerifierClient](#mockverifierclient)
-  * [Routing](#routing)
-  * [Timeout handling](#timeout-handling)
-    + [useTimeout](#usetimeout)
-    + [usePollingScreenTimeout](#usepollingscreentimeout)
-  * [Modal component](#modal-component)
-  * [Multitenancy](#multitenancy)
-    + [ClientContext](#clientcontext)
-    + [VerifierClientProvider](#verifierclientprovider)
-    + [Link resolver](#link-resolver)
+- [Assembly Voting VerifyMyBallot Site](#assembly-voting-verifymyballot-site)
+  - [Contents](#contents)
+  - [Installing](#installing)
+  - [Environment variables](#environment-variables)
+  - [Running](#running)
+  - [Building](#building)
+  - [Testing](#testing)
+  - [Strict mode](#strict-mode)
+  - [Documentation](#documentation)
+    - [JS Client](#js-client)
+      - [MockVerifierClient](#mockverifierclient)
+    - [Routing](#routing)
+    - [Timeout handling](#timeout-handling)
+      - [useTimeout](#usetimeout)
+      - [usePollingScreenTimeout](#usepollingscreentimeout)
+    - [Modal component](#modal-component)
+    - [Multitenancy](#multitenancy)
+      - [ClientContext](#clientcontext)
+      - [VerifierClientProvider](#verifierclientprovider)
+      - [Link resolver](#link-resolver)
 
 ## Installing
 
@@ -34,6 +36,12 @@ yarn
 ## Environment variables
 
 To tailor the project to your setup, you should double check the use of environment variables in relation to js-client, as explained in the documentation of the project's use of [JS Client](#js-client).
+
+You're welcome to either use the docker-compose enviroment setting or use the comand below to set up your local ENV file.
+
+```bash
+$ cp .env{.example,}
+```
 
 ## Running
 
