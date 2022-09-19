@@ -18,6 +18,10 @@ This is the repository regarding the example implementation of a VerifyMyBallot 
     + [useTimeout](#usetimeout)
     + [usePollingScreenTimeout](#usepollingscreentimeout)
   * [Modal component](#modal-component)
+  * [Multitenancy](#multitenancy)
+    + [ClientContext](#clientcontext)
+    + [VerifierClientProvider](#verifierclientprovider)
+    + [Link resolver](#link-resolver)
 
 ## Installing
 
@@ -85,7 +89,7 @@ The project is written in React with TypeScript, bootstrapped with [Create React
 
 To verify and check the ballots, we utilize [js-client](https://github.com/aion-dk/js-client).
 
-Changing the election URL used by js-client should be done with the environment variable: `REACT_APP_DEFAULT_ELECTION_URL`.
+Changing the election URL used by js-client should be done with the environment variable: `REACT_APP_BASE_ELECTION_URL`.
 
 Alternatively, if you'd just want to test out the project on a mocked js-client, it is possible to use the provided [MockVerifierClient](#mockverifierclient) by setting the environment variable: `REACT_APP_TESTING=true` - this is also what the tests are using.
 
@@ -136,3 +140,19 @@ The hook returns an array of exactly length 3, including, in order, the base tim
 ### Modal component
 
 The component for our "reminder" modal is found in `src/components/TimeoutModal.tsx`, which uses the [react-modal](https://reactcommunity.org/react-modal/) library at its core - this is due to its focus on accessibility and the popularity of the library.
+
+### Multitenancy
+
+To support multitenancy, allowing the client to support multiple different boards by changing the URL routes, we have a couple of helpers to manage the shared `AVVerifier` throughout the app (initialized with the correct board URL).
+
+#### ClientContext
+
+We use a React Context to manage the shared `AVVerifier` client throughout the application, this is found in `src/contexts/ClientContext.ts`. It is just providing a shell for the context, which is filled at the start of the application lifecycle in `VerifierClientProvider`, as such, the initialized `defaultValue` is only relevant in uses that isn't covered by the provider (for example, in isolated unit tests, etc.).
+
+#### VerifierClientProvider
+
+This is the main provider of the correct `AVVerifier` initialization with the correct board URL, being built from the board slug provided in the route parameters - as such, this needs to be a descendant of the application's routing (as it needs to grab the board slug from there).
+
+#### Link resolver
+
+As board slug based routing is used in many different parts of the system, and it is crucial how it is being constructed and concatenated, we abstract away the resolving of links between routes of the application. This is done in `useBoardSlugLinkResolver`, found in `src/hooks/useBoardSlugLinkResolver.ts`. Using this hook, provides a component with a function to resolve properly links within the application, making sure to correctly preserve the active board slug.

@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TIMEOUT_RETRIES, TIMEOUT_REMINDER_TIME } from '../constants'
+import useBoardSlugLinkResolver from './useBoardSlugLinkProvider'
 import useTimeout from './useTimeout'
 
 // NOTE: Remember to wrap pollingAction and nextPage in a useCallback
@@ -11,11 +12,12 @@ export default function usePollingScreenTimeout<T>(
 ): [number, boolean, (modalOpen: boolean) => void] {
   const navigate = useNavigate()
   const [modalOpen, setModalOpen] = useState(false)
+  const linkResolver = useBoardSlugLinkResolver()
 
   // Base timeout
   const onTimeout = useCallback(() => {
-    navigate('/expired')
-  }, [navigate])
+    navigate(linkResolver('/expired'))
+  }, [navigate, linkResolver])
   const [timeout, startTimeout] = useTimeout({
     intervalTimeout: 1000,
     retries: TIMEOUT_RETRIES,

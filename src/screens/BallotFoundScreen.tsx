@@ -1,11 +1,15 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import TimeoutModal from '../components/TimeoutModal'
+import ClientContext from '../contexts/ClientContext'
+import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 import usePollingScreenTimeout from '../hooks/usePollingScreenTimeout'
-import VerifierClient from '../VerifierClient'
 
 interface BallotFoundScreenProps {}
 
 const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
+  const VerifierClient = useContext(ClientContext)
+  const linkResolver = useBoardSlugLinkResolver()
+
   const pollingAction = useCallback(async () => {
     try {
       console.debug('Polling for spoil request...')
@@ -21,11 +25,11 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
       console.debug('An error occured while polling for spoil request:')
       console.debug(e)
     }
-  }, [])
+  }, [VerifierClient])
 
   const nextPage = useCallback(
-    (pairingCode?: string) => `/passkey/${pairingCode}`,
-    []
+    (pairingCode?: string) => linkResolver(`/passkey/${pairingCode}`),
+    [linkResolver]
   )
 
   const [timeout, modalOpen, setModalOpen] = usePollingScreenTimeout<
@@ -36,18 +40,18 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
     <main id="content" className="page">
       <h1>Ballot found</h1>
       <p className="max-w-[280px] page-content" role="text">
-        Tap the <strong>Code entered</strong> button in the
-        Mark.It app.
+        Tap the <strong>Code entered</strong> button in the Mark.It app.
       </p>
 
       <TimeoutModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         timeout={timeout}
-        body={<p role="text">
-          Tap the <strong>Code entered</strong> button in the
-          Mark.It app.
-        </p>}
+        body={
+          <p role="text">
+            Tap the <strong>Code entered</strong> button in the Mark.It app.
+          </p>
+        }
       />
     </main>
   )

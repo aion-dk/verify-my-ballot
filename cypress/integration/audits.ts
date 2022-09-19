@@ -10,37 +10,37 @@ const thresholds: Cypress.LighthouseThresholds = {
 
 context('Page audits', () => {
   it('has acceptable audit for getting started page', () => {
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3000/us')
     cy.lighthouse(thresholds)
     cy.pa11y()
   })
   it('has acceptable audit for about page', () => {
-    cy.visit('http://localhost:3000/about')
+    cy.visit('http://localhost:3000/us/about')
     cy.lighthouse(thresholds)
     cy.pa11y()
   })
   it('has acceptable audit for faq page', () => {
-    cy.visit('http://localhost:3000/faq')
+    cy.visit('http://localhost:3000/us/faq')
     cy.lighthouse(thresholds)
     cy.pa11y()
   })
   it('has acceptable audit for find my ballot page', () => {
-    cy.visit('http://localhost:3000/find-my-ballot')
+    cy.visit('http://localhost:3000/us/find-my-ballot')
     cy.lighthouse(thresholds)
     cy.pa11y()
   })
   it('has acceptable audit for ballot found page', () => {
-    cy.visit('http://localhost:3000/ballot-found')
+    cy.visit('http://localhost:3000/us/ballot-found')
     cy.lighthouse(thresholds)
     cy.pa11y()
   })
   it('has acceptable audit for passkey screen', () => {
-    cy.visit('http://localhost:3000/passkey/12345')
+    cy.visit('http://localhost:3000/us/passkey/12345')
     cy.lighthouse(thresholds)
     cy.pa11y()
   })
   it('has acceptable audit for unsealed ballot screen', () => {
-    cy.visit('http://localhost:3000/unsealed-ballot', {
+    cy.visit('http://localhost:3000/us/unsealed-ballot', {
       onLoad(win) {
         cy.stub((win as any).client as AVVerifier, 'decryptBallot').returns(
           MOCKED_BALLOTS_DB['12345']
@@ -51,7 +51,7 @@ context('Page audits', () => {
     cy.pa11y()
   })
   it('has acceptable audit for finish screen', () => {
-    cy.visit('http://localhost:3000/finish')
+    cy.visit('http://localhost:3000/us/finish')
     cy.lighthouse(thresholds)
     cy.pa11y()
   })
