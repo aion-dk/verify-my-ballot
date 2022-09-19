@@ -1,14 +1,10 @@
 import { AVVerifier } from '@aion-dk/js-client'
-import {
-  TIMEOUT_RETRIES,
-  TIMEOUT_REMINDER_TIME,
-  MOCK_RESPONSE_MS,
-} from '../../src/constants'
+import { TIMEOUT_RETRIES, MOCK_RESPONSE_MS } from '../../src/constants'
 
 const LONGER_THAN_TIMEOUT = (TIMEOUT_RETRIES + 1) * 1000
 
 it('respects timeout on ballot found...', () => {
-  cy.visit('http://localhost:3000', {
+  cy.visit('http://localhost:3000/us', {
     onLoad(win) {
       cy.stub((win as any).client as AVVerifier, 'pollForSpoilRequest').returns(
         new Promise((resolve, reject) => {
@@ -30,18 +26,16 @@ it('respects timeout on ballot found...', () => {
 
   cy.get('[data-cy=find-ballot-submit]').click()
 
-  cy.location('pathname').should('eq', '/ballot-found')
+  cy.location('pathname').should('eq', '/us/ballot-found')
 
   cy.wait(MOCK_RESPONSE_MS / 2).then(() => {
     cy.get('[data-cy=timeout-modal]', { timeout: 1000 }).should('exist')
 
-    cy.contains(
-      'Tap the Code entered button in the Mark.It app.'
-    )
+    cy.contains('Tap the Code entered button in the Mark.It app.')
 
     cy.location('pathname', { timeout: LONGER_THAN_TIMEOUT }).should(
       'eq',
-      '/expired'
+      '/us/expired'
     )
 
     cy.contains('h1', 'Session expired')

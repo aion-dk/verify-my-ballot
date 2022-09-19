@@ -9,6 +9,7 @@ declare global {
        * @example cy.dataCy('greeting')
        */
       tab(opts?: { shift: boolean }): Chainable<Element>
+      testBallotFlow(boardSlug?: string): Chainable<Element>
     }
   }
 }

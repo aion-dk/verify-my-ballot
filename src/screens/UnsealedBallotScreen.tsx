@@ -1,7 +1,8 @@
 import { ReadableContestSelection } from '@aion-dk/js-client/dist/lib/av_client/types'
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import VerifierClient from '../VerifierClient'
+import ClientContext from '../contexts/ClientContext'
+import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 
 interface UnsealedBallotScreenProps {}
 
@@ -10,6 +11,8 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
   const [contestSelections, setContestSelections] = React.useState<
     ReadableContestSelection[]
   >([])
+  const VerifierClient = useContext(ClientContext)
+  const linkResolver = useBoardSlugLinkResolver()
 
   useEffect(() => {
     try {
@@ -26,9 +29,9 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
       setContestSelections(ballot)
     } catch (e) {
       console.debug(e)
-      if (process.env.NODE_ENV === 'production') navigate('/')
+      if (process.env.NODE_ENV === 'production') navigate(linkResolver(''))
     }
-  }, [navigate])
+  }, [navigate, VerifierClient, linkResolver])
 
   return (
     <main id="content" className="page">
@@ -44,7 +47,7 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
       <button
         className="button"
         onClick={() => {
-          navigate('/finish')
+          navigate(linkResolver('/finish'))
         }}
         data-cy="finish-button"
       >

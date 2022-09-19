@@ -2,7 +2,7 @@ import { MOCK_RESPONSE_MS } from '../../src/constants'
 
 context('Accessibility', () => {
   it.skip('can resize font sizes', () => {
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3000/us')
 
     // starts with default 16px
     cy.get('html').should('have.css', 'font-size', '16px')
@@ -19,7 +19,7 @@ context('Accessibility', () => {
   })
 
   it('sets DOM active element (focus) to a meaningful header element when switching page', () => {
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3000/us')
 
     cy.get('[data-cy=get-started-button]').click()
 
@@ -27,7 +27,7 @@ context('Accessibility', () => {
   })
 
   it('can tab through the FAQ menus', () => {
-    cy.visit('http://localhost:3000/faq')
+    cy.visit('http://localhost:3000/us/faq')
 
     // Can focus and open the first question
     const firstQuestion = cy
@@ -109,7 +109,7 @@ context('Accessibility', () => {
   })
 
   it('should change active element focus to modal upon opening it', () => {
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3000/us')
 
     cy.get('[data-cy=get-started-button]').click()
 
@@ -117,7 +117,7 @@ context('Accessibility', () => {
 
     cy.get('[data-cy=find-ballot-submit]').click()
 
-    cy.location('pathname').should('eq', '/ballot-found')
+    cy.location('pathname').should('eq', '/us/ballot-found')
 
     // Wait till modal is open, and then check the actively focused element
     cy.wait(MOCK_RESPONSE_MS / 2).then(() => {

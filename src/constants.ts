@@ -1,6 +1,6 @@
-export const DEFAULT_ELECTION_URL =
-  process.env.REACT_APP_DEFAULT_ELECTION_URL ||
-  'https://dbb.us-avx.dev.container.assembly-voting.com/us'
+export const BASE_ELECTION_URL =
+  process.env.REACT_APP_BASE_ELECTION_URL ||
+  'https://dbb.us-avx.dev.container.assembly-voting.com'
 
 const _timeoutRetries = process.env.REACT_APP_TIMEOUT_RETRIES
 export const TIMEOUT_RETRIES = _timeoutRetries ? parseInt(_timeoutRetries) : 30

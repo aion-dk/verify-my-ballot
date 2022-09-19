@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ClientContext from '../contexts/ClientContext'
+import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 import { getTheme } from '../utils'
-import VerifierClient from '../VerifierClient'
 
 interface FindMyBallotScreenProps {}
 
@@ -9,6 +10,8 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
   const navigate = useNavigate()
   const [ballotCheckingCode, setBallotCheckingCode] = useState('')
   const [inputError, setInputError] = useState(false)
+  const VerifierClient = useContext(ClientContext)
+  const linkResolver = useBoardSlugLinkResolver()
 
   const inputAriaAttributes: React.AriaAttributes = {
     'aria-label': 'Ballot checking code',
@@ -40,7 +43,7 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
             console.debug('Finding ballot...')
             await VerifierClient.findBallot(ballotCheckingCode)
             console.debug('Ballot found!')
-            navigate('/ballot-found')
+            navigate(linkResolver('/ballot-found'))
           } catch (e) {
             console.debug('An error occured while finding ballot:')
             console.debug(e)
