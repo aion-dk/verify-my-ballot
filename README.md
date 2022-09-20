@@ -39,6 +39,8 @@ To tailor the project to your setup, you should double check the use of environm
 
 You're welcome to either use the docker-compose enviroment setting or use the comand below to set up your local ENV file.
 
+To work in testing mode with a mocked version of the Verifier Client, set a `REACT_APP_TESTING` flag in your enviroment or docker-compose file. If you want to use the JS-client verifier instead, make sure that flag does not exist. 
+
 ```bash
 $ cp .env{.example,}
 ```
