@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import AriaLiveRegionLoading from '../components/AriaLiveRegionLoading'
 import ClientContext from '../contexts/ClientContext'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 import { getTheme } from '../utils'
@@ -12,6 +13,7 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
   const [inputError, setInputError] = useState(false)
   const VerifierClient = useContext(ClientContext)
   const linkResolver = useBoardSlugLinkResolver()
+  const [ariaLoading, setAriaLoading] = useState(false)
 
   const inputAriaAttributes: React.AriaAttributes = {
     'aria-label': 'Ballot checking code',
@@ -40,6 +42,7 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
           e.preventDefault()
 
           try {
+            setAriaLoading(true)
             console.debug('Finding ballot...')
             await VerifierClient.findBallot(ballotCheckingCode)
             console.debug('Ballot found!')
@@ -48,9 +51,12 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
             console.debug('An error occured while finding ballot:')
             console.debug(e)
             setInputError(true)
+          } finally {
+            setAriaLoading(false)
           }
         }}
       >
+        <AriaLiveRegionLoading loading={ariaLoading} />
         <div
           id="ballot-code-invalid"
           className="bg-brand-orange dark:bg-brand-yellow p-[25px] max-w-[420px] mb-[20px]"

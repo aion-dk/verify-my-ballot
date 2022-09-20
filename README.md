@@ -128,7 +128,7 @@ The hook takes as parameters an object where you can define the `intervalTimeout
 
 The hook gives back a tuple, the first element being the current time left in seconds, and the second being a function to start the timer.
 
-The amount of retries can be configured with the `REACT_APP_TIMEOUT_RETRIES` environment variable, with each retry equating to 1 second.
+The amount of retries can be configured with the `REACT_APP_TIMEOUT_RETRIES` environment variable, with each retry equating to 1 second. The time it takes for the timeout modal reminder to pop up can also be configured with `REACT_APP_TIMEOUT_REMINDER_TIME`. An example of a `.env` file with the reminder showing up after 15 seconds, and staying on the screen for 6 minutes can be found under `.env.example`.
 
 #### usePollingScreenTimeout
 

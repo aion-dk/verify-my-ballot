@@ -22,6 +22,7 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
             size="50px"
             aria-label="Question mark icon"
             title="Question mark icon"
+            aria-hidden="true"
           />
         </div>
         <p className="flex flex-col">

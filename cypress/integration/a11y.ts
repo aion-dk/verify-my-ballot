@@ -6,18 +6,18 @@ context('Accessibility', () => {
   it.skip('can resize font sizes', () => {
     cy.visit(url)
 
-    // starts with default 16px
-    cy.get('html').should('have.css', 'font-size', '16px')
+    // starts with default 18px
+    cy.get('html').should('have.css', 'font-size', '18px')
 
     // can increase by 2px each click
     cy.get('[data-cy=increase-font-size]').click()
     cy.get('[data-cy=increase-font-size]').click()
-    cy.get('html').should('have.css', 'font-size', '20px')
+    cy.get('html').should('have.css', 'font-size', '22px')
 
     // can decrease by 2px each click
     cy.get('[data-cy=decrease-font-size]').click()
     cy.get('[data-cy=decrease-font-size]').click()
-    cy.get('html').should('have.css', 'font-size', '16px')
+    cy.get('html').should('have.css', 'font-size', '18px')
   })
 
   it('sets DOM active element (focus) to a meaningful header element when switching page', () => {

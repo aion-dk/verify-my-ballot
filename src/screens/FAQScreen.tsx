@@ -84,7 +84,12 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
             <span className="font-semibold">{faq.question}</span>
           </p>
           <div className="self-center mr-[6px]">
-            <GoDash color="#C04535" title="Close menu" aria-hidden="true" />
+            <GoDash
+              color="#FFF"
+              size={40}
+              title="Close menu"
+              aria-hidden="true"
+            />
           </div>
         </div>
 

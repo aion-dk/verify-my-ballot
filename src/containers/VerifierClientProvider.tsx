@@ -37,9 +37,6 @@ const VerifierClientProvider: React.FC<{ children?: React.ReactNode }> = ({
         )
         console.error(e)
         navigate('error')
-        // window.alert(
-        //   'A valid election could not be loaded based on the inferred information'
-        // )
       } finally {
         setVerifierClient(client)
       }

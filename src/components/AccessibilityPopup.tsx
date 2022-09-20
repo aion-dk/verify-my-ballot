@@ -2,7 +2,6 @@ import React from 'react'
 import { IoMdClose } from 'react-icons/io'
 import Modal from 'react-modal'
 import { IoSunny, IoMoon } from 'react-icons/io5'
-import { getTheme } from '../utils'
 import TextResizer from './TextResizer'
 
 Modal.setAppElement('#root')
@@ -69,13 +68,16 @@ const AccessibilityPopup: React.FC<TimeoutModalProps> = ({
       >
         <div className="flex items-center justify-between mb-[30px] ">
           <h3 className="text-left">Acessibility adjustments</h3>
-          <div className="p-2 cursor-pointer dark:text-white">
+          <button
+            className="p-2 cursor-pointer dark:text-white"
+            onClick={onClose}
+          >
             <IoMdClose
-              aria-label="close button"
+              //aria-label="close button"
+              aria-hidden="true"
               size="24px"
-              onClick={onClose}
             />
-          </div>
+          </button>
         </div>
 
         <button
@@ -83,7 +85,7 @@ const AccessibilityPopup: React.FC<TimeoutModalProps> = ({
           aria-label="high contrast"
           className={`contrast-button bg-brand-blue text-white dark:bg-brand-darkBackground dark:border-white dark:text-white`}
         >
-          <IoSunny size="36px" />
+          <IoSunny size="36px" aria-hidden="true" />
           <p className="font-bold mt-2">High contrast</p>
         </button>
         <button
@@ -91,7 +93,7 @@ const AccessibilityPopup: React.FC<TimeoutModalProps> = ({
           aria-label="dark contrast"
           className={`contrast-button mt-4 dark:bg-white dark:text-brand-darkBackground dark:border-white`}
         >
-          <IoMoon size="36px" />
+          <IoMoon size="36px" aria-hidden="true" />
           <p className="font-bold mt-2">Dark contrast</p>
         </button>
         <div className="flex flex-col items-center mt-5">

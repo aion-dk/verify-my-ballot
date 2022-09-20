@@ -32,9 +32,9 @@ interface AppRouterProps {}
 const AppRouter: React.FC<AppRouterProps> = () => {
   return (
     <HistoryRouter history={history}>
-      <a href="#content" className="sr-only focus:not-sr-only">
+      {/* <a href="#content" className="sr-only focus:not-sr-only">
         Skip to content
-      </a>
+      </a> */}
       <div className="flex flex-col h-screen">
         <Routes>
           <Route element={<PageLayout />}>

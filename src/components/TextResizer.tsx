@@ -4,7 +4,7 @@ import { FiMinus, FiPlus } from 'react-icons/fi'
 function changeRootFontSize(fontSizeChange: number) {
   const rootElement = document.querySelector(':root') as HTMLElement | null
   if (rootElement) {
-    const fontSize = rootElement.style.fontSize || '16px'
+    const fontSize = rootElement.style.fontSize || '18px'
     const sizeValue = parseInt(fontSize.split('px')[0])
     if (!isNaN(sizeValue)) {
       rootElement.style.fontSize = `${sizeValue + fontSizeChange}px`
@@ -23,7 +23,7 @@ const TextResizer: React.FC<TextResizerProps> = () => {
         aria-label="Decrease font size"
         data-cy="decrease-font-size"
       >
-        <FiMinus title="Decrease font size" />
+        <FiMinus title="Decrease font size" aria-hidden="true" />
       </button>
       <div className="whitespace-nowrap">Text size</div>
       <button
@@ -32,7 +32,7 @@ const TextResizer: React.FC<TextResizerProps> = () => {
         aria-label="Increase font size"
         data-cy="increase-font-size"
       >
-        <FiPlus title="Increase font size" />
+        <FiPlus title="Increase font size" aria-hidden="true" />
       </button>
     </div>
   )
