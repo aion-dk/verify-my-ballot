@@ -11,4 +11,4 @@ services:
       - "./:/usr/src/app"
       - "/usr/src/app/node_modules"
     environment:
-      REACT_APP_DEFAULT_ELECTION_URL: "http://host.docker.internal:3003/us"
+      REACT_APP_BASE_ELECTION_URL: "http://localhost:3003"
