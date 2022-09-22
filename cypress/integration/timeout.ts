@@ -39,5 +39,9 @@ it('respects timeout on ballot found...', () => {
     )
 
     cy.contains('h1', 'Session expired')
+
+    cy.get('[data-cy=reset-button]').click()
+
+    cy.location('pathname').should('eq', '/us')
   })
 })

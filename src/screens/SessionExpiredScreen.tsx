@@ -20,7 +20,7 @@ const SessionExpiredScreen: React.FC<SessionExpiredScreenProps> = () => {
         No action was found on the board within expected period of time. Try
         verifying again.
       </p>
-      <Link className="button" to={linkResolver('')}>
+      <Link className="button" to={linkResolver('')} data-cy="reset-button">
         Reset
       </Link>
     </main>
