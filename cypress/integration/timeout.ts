@@ -4,7 +4,7 @@ import { TIMEOUT_RETRIES, MOCK_RESPONSE_MS } from '../../src/constants'
 const LONGER_THAN_TIMEOUT = (TIMEOUT_RETRIES + 1) * 1000
 
 it('respects timeout on ballot found...', () => {
-  cy.visit('http://localhost:3000/us', {
+  cy.visit('http://localhost:3005/us', {
     onLoad(win) {
       cy.stub((win as any).client as AVVerifier, 'pollForSpoilRequest').returns(
         new Promise((resolve, reject) => {
