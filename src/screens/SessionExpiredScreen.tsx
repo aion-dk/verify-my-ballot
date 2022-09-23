@@ -1,10 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { TbMoodSad } from 'react-icons/tb'
+import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 
 interface SessionExpiredScreenProps {}
 
 const SessionExpiredScreen: React.FC<SessionExpiredScreenProps> = () => {
+  const linkResolver = useBoardSlugLinkResolver()
+
   return (
     <main id="content" className="page">
       <h1>Session expired</h1>
@@ -17,7 +20,7 @@ const SessionExpiredScreen: React.FC<SessionExpiredScreenProps> = () => {
         No action was found on the board within expected period of time. Try
         verifying again.
       </p>
-      <Link className="button" to="/">
+      <Link className="button" to={linkResolver('')} data-cy="reset-button">
         Reset
       </Link>
     </main>
