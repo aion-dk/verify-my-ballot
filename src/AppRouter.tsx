@@ -19,7 +19,10 @@ import ErrorScreen from './screens/ErrorScreen'
 
 // Patch react-router with accessible SPA navigation with page announcements and focus
 const history = createBrowserHistory()
-wrapHistory(history)
+wrapHistory(history, {
+  primaryFocusTarget: 'main h1, main',
+  navigationMessage: (title, _location, _action) => `Navigated to ${title}.`,
+})
 
 // Listen for router changes and focus root element for improved accessibility
 history.listen(() => {
@@ -32,9 +35,6 @@ interface AppRouterProps {}
 const AppRouter: React.FC<AppRouterProps> = () => {
   return (
     <HistoryRouter history={history}>
-      {/* <a href="#content" className="sr-only focus:not-sr-only">
-        Skip to content
-      </a> */}
       <div className="flex flex-col h-screen">
         <Routes>
           <Route element={<PageLayout />}>
