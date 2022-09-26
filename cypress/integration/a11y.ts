@@ -1,8 +1,10 @@
 import { MOCK_RESPONSE_MS } from '../../src/constants'
 
+const url = `http://localhost:3005/us`
+
 context('Accessibility', () => {
   it.skip('can resize font sizes', () => {
-    cy.visit('http://localhost:3000/us')
+    cy.visit(url)
 
     // starts with default 16px
     cy.get('html').should('have.css', 'font-size', '16px')
@@ -19,7 +21,7 @@ context('Accessibility', () => {
   })
 
   it('sets DOM active element (focus) to a meaningful header element when switching page', () => {
-    cy.visit('http://localhost:3000/us')
+    cy.visit(url)
 
     cy.get('[data-cy=get-started-button]').click()
 
@@ -27,7 +29,7 @@ context('Accessibility', () => {
   })
 
   it('can tab through the FAQ menus', () => {
-    cy.visit('http://localhost:3000/us/faq')
+    cy.visit(`${url}/faq`)
 
     // Can focus and open the first question
     const firstQuestion = cy
@@ -109,7 +111,7 @@ context('Accessibility', () => {
   })
 
   it('should change active element focus to modal upon opening it', () => {
-    cy.visit('http://localhost:3000/us')
+    cy.visit(url)
 
     cy.get('[data-cy=get-started-button]').click()
 

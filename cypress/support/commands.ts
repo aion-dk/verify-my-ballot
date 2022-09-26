@@ -2,7 +2,7 @@ import 'cypress-audit/commands'
 import { MOCK_RESPONSE_MS } from '../../src/constants'
 
 Cypress.Commands.add('testBallotFlow', (boardSlug = 'us') => {
-  cy.visit(`http://localhost:3000/${boardSlug}`)
+  cy.visit(`http://localhost:3005/${boardSlug}`)
 
   cy.contains('h1', 'Welcome to the VerifyMyBallot Site')
 

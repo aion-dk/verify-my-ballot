@@ -6,13 +6,12 @@ services:
     build: "."
     command: "yarn start"
     ports:
-      - "3005:3000"
+      - "3005:3005"
     volumes:
       - "./:/usr/src/app"
       - "/usr/src/app/node_modules"
     environment:
       REACT_APP_BASE_ELECTION_URL: "http://localhost:3003"
-      REACT_APP_TIMEOUT_REMINDER_TIME: 15
+      REACT_APP_TIMEOUT_REMINDER_TIME: 5
       REACT_APP_TIMEOUT_RETRIES: 30
       REACT_APP_STRICT: false
-      NODE_ENV: "development"

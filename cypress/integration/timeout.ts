@@ -2,9 +2,10 @@ import { AVVerifier } from '@aion-dk/js-client'
 import { TIMEOUT_RETRIES, MOCK_RESPONSE_MS } from '../../src/constants'
 
 const LONGER_THAN_TIMEOUT = (TIMEOUT_RETRIES + 1) * 1000
+const url = `http://localhost:3005/us`
 
 it('respects timeout on ballot found...', () => {
-  cy.visit('http://localhost:3000/us', {
+  cy.visit(url, {
     onLoad(win) {
       cy.stub((win as any).client as AVVerifier, 'pollForSpoilRequest').returns(
         new Promise((resolve, reject) => {
