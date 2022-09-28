@@ -6,6 +6,7 @@ import AccessibleSpan from '../components/AccessibleSpan'
 import ClientContext from '../contexts/ClientContext'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 import ScreenMain from '../components/ScreenMain'
+import { useTranslation } from 'react-i18next'
 
 interface PasskeyScreenProps {}
 
@@ -13,6 +14,7 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
   const { pairingCode } = useParams<{ pairingCode: string }>()
   const VerifierClient = useContext(ClientContext)
   const linkResolver = useBoardSlugLinkResolver()
+  const { t } = useTranslation()
 
   const pollingAction = useCallback(async () => {
     try {
@@ -37,13 +39,12 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
 
   return (
     <ScreenMain>
-      <h1>Passkey</h1>
-      <p className="max-w-[420px] page-content">
-        Please confirm that the following key matches the one displayed in the
-        Mark.It app.
-      </p>
+      <h1>{t('passkey.header')}</h1>
+      <p className="max-w-[420px] page-content">{t('passkey.description')}</p>
       <p className="key dark:text-white" data-cy="pairing-code">
-        <AccessibleSpan screenReaderText={`The passkey is: ${pairingCode}`}>
+        <AccessibleSpan
+          screenReaderText={t('passkey.sr-passkey', { pairingCode })}
+        >
           {pairingCode}
         </AccessibleSpan>
       </p>
@@ -52,9 +53,7 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         timeout={timeout}
-        body={
-          'You have to confirm that the pairing codes match in the Mark.It app.'
-        }
+        body={t('passkey.timeout')}
       />
     </ScreenMain>
   )

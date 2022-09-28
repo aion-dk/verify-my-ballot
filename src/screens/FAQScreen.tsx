@@ -4,6 +4,7 @@ import AccessibleSpan from '../components/AccessibleSpan'
 import ScreenMain from '../components/ScreenMain'
 import { mod } from '../utils'
 import config from '../config/config.json'
+import { useTranslation } from 'react-i18next'
 
 // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/menuitem_role
 function isOpenMenuKey(key: string): boolean {
@@ -11,8 +12,8 @@ function isOpenMenuKey(key: string): boolean {
 }
 
 type FAQ = {
-  question: string
-  answer: string
+  questionTranslationKey: string
+  answerTranslationKey: string
 }
 
 const faqs = config.faqs as FAQ[]
@@ -21,6 +22,7 @@ interface FAQScreenProps {}
 
 const FAQScreen: React.FC<FAQScreenProps> = () => {
   const [activeQ, setActiveQ] = useState(-1)
+  const { t } = useTranslation()
 
   const handleChange = (i: number) => {
     if (i === activeQ) {
@@ -59,8 +61,12 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
       >
         <div className="flex justify-between h-[60px] pl-[6px]">
           <p>
-            <AccessibleSpan screenReaderText="Question:">Q: </AccessibleSpan>
-            <span className="font-semibold">{faq.question}</span>
+            <AccessibleSpan screenReaderText={t('faq.question-sr')}>
+              Q:{' '}
+            </AccessibleSpan>
+            <span className="font-semibold">
+              {t(faq.questionTranslationKey as any)}
+            </span>
           </p>
           <div className="self-center mr-[6px]">
             <GoDash
@@ -74,12 +80,12 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
 
         <p className="bg-white text-brand-dark dark:bg-transparent dark:text-white dark:border-t-2 p-[8px] text-[18px]">
           <AccessibleSpan
-            screenReaderText="Answer:"
+            screenReaderText={t('faq.answer-sr')}
             className="text-[18px] font-semibold"
           >
             A:{' '}
           </AccessibleSpan>
-          {faq.answer}
+          {t(faq.answerTranslationKey as any)}
         </p>
       </li>
     )
@@ -102,8 +108,12 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
         }}
       >
         <p>
-          <AccessibleSpan screenReaderText="Question:">Q: </AccessibleSpan>
-          <span className="font-semibold">{faq.question}</span>
+          <AccessibleSpan screenReaderText={t('faq.question-sr')}>
+            Q:{' '}
+          </AccessibleSpan>
+          <span className="font-semibold">
+            {t(faq.questionTranslationKey as any)}
+          </span>
         </p>
         <div className="text-brand-blue dark:text-white">
           <GoPlus size="26px" title="Open menu" aria-hidden="true" />
@@ -114,7 +124,7 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
 
   return (
     <ScreenMain>
-      <h1>Frequently Asked Questions</h1>
+      <h1>{t('faq.header')}</h1>
       <ul className="flex flex-col items-center" role="menu" data-cy="faq-menu">
         {faqs.map((faq, i) => {
           if (i === activeQ) {

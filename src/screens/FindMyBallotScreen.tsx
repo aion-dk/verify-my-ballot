@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import AriaLiveRegionLoading from '../components/AriaLiveRegionLoading'
 import ScreenMain from '../components/ScreenMain'
@@ -15,9 +16,10 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
   const VerifierClient = useContext(ClientContext)
   const linkResolver = useBoardSlugLinkResolver()
   const [ariaLoading, setAriaLoading] = useState(false)
+  const { t } = useTranslation()
 
   const inputAriaAttributes: React.AriaAttributes = {
-    'aria-label': 'Ballot checking code',
+    'aria-label': t('find-my-ballot.input-label'),
   }
   if (inputError) {
     inputAriaAttributes['aria-invalid'] = true
@@ -31,10 +33,12 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
 
   return (
     <ScreenMain>
-      <h1>Find my ballot</h1>
+      <h1>{t('find-my-ballot.header')}</h1>
       <p className="max-w-[260px] page-content" role="text">
-        Enter the ballot checking code displayed in the Mark.It app and click{' '}
-        <strong>Enter</strong>
+        <Trans i18nKey="find-my-ballot.description">
+          Enter the ballot checking code displayed in the Mark.It app and click{' '}
+          <strong>Enter</strong>
+        </Trans>
       </p>
 
       <form
@@ -67,11 +71,10 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
             aria-live="assertive"
           >
             <h3 className="mb-[20px] dark:text-brand-darkBackground">
-              Tracking Code Not Found
+              {t('find-my-ballot.error-header')}
             </h3>
             <p className="font-bold text-center text-brand-dark">
-              Please verify you entered the tracking code correctly. Be sure to
-              match case.
+              {t('find-my-ballot.error-description')}
             </p>
           </div>
         )}
@@ -79,14 +82,14 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
           type="text"
           value={ballotCheckingCode}
           onChange={e => setBallotCheckingCode(e.target.value)}
-          placeholder="Ballot checking code"
+          placeholder={t('find-my-ballot.input-placeholder')}
           className="placeholder-gray-300"
           style={{ borderColor: inputError ? getBg() : '#000' }}
           data-cy="ballot-checking-code"
           {...inputAriaAttributes}
         />
         <button className="button" type="submit" data-cy="find-ballot-submit">
-          Enter
+          {t('find-my-ballot.button')}
         </button>
       </form>
     </ScreenMain>

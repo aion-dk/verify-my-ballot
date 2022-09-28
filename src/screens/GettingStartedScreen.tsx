@@ -3,19 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import { FiChevronRight } from 'react-icons/fi'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 import ScreenMain from '../components/ScreenMain'
+import { useTranslation } from 'react-i18next'
 
 interface GettingStartedScreenProps {}
 
 const GettingStartedScreen: React.FC<GettingStartedScreenProps> = () => {
   const navigate = useNavigate()
   const linkResolver = useBoardSlugLinkResolver()
+  const { t } = useTranslation()
 
   return (
     <ScreenMain>
-      <h1>Welcome to the VerifyMyBallot Site</h1>
-      <p className="max-w-[320px] page-content">
-        Use this site to verify your ballot was recorded and sealed correctly.
-      </p>
+      <h1>{t('welcome.header')}</h1>
+      <p className="max-w-[320px] page-content">{t('welcome.description')}</p>
       <button
         data-cy="get-started-button"
         onClick={() => {
@@ -23,7 +23,8 @@ const GettingStartedScreen: React.FC<GettingStartedScreenProps> = () => {
         }}
         className="button"
       >
-        Get started
+        {t('welcome.button')}
+
         <FiChevronRight color="#fff" size="24px" aria-hidden="true" />
       </button>
     </ScreenMain>

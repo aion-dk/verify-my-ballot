@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import AppRouter from './AppRouter'
 import config from './config/config.json'
+import './i18n'
 
 const App: React.FC = () => {
   useEffect(() => {

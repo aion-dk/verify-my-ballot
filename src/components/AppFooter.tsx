@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
 type Step = {
@@ -6,33 +7,34 @@ type Step = {
   url: string
 }
 
-const steps: Step[] = [
-  {
-    name: 'Find my ballot',
-    url: 'find-my-ballot',
-  },
-  {
-    name: 'Ballot found',
-    url: 'ballot-found',
-  },
-  {
-    name: 'Passkey',
-    url: 'passkey',
-  },
-  {
-    name: 'Unsealed ballot',
-    url: 'unsealed-ballot',
-  },
-  {
-    name: 'Finish',
-    url: 'finish',
-  },
-]
-
 interface AppFooterProps {}
 
 const AppFooter: React.FC<AppFooterProps> = () => {
   const location = useLocation()
+  const { t } = useTranslation()
+
+  const steps: Step[] = [
+    {
+      name: t('footer.find-my-ballot'),
+      url: 'find-my-ballot',
+    },
+    {
+      name: t('footer.ballot-found'),
+      url: 'ballot-found',
+    },
+    {
+      name: t('footer.passkey'),
+      url: 'passkey',
+    },
+    {
+      name: t('footer.unsealed-ballot'),
+      url: 'unsealed-ballot',
+    },
+    {
+      name: t('footer.finish'),
+      url: 'finish',
+    },
+  ]
 
   // Update progress on location change
   useEffect(() => {

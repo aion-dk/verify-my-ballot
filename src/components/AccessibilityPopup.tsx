@@ -3,6 +3,7 @@ import { IoMdClose } from 'react-icons/io'
 import Modal from 'react-modal'
 import { IoSunny, IoMoon } from 'react-icons/io5'
 import TextResizer from './TextResizer'
+import { useTranslation } from 'react-i18next'
 
 Modal.setAppElement('#root')
 
@@ -31,6 +32,8 @@ const AccessibilityPopup: React.FC<TimeoutModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const { t } = useTranslation()
+
   const changeTheme = (to: 'light' | 'dark') => {
     if (localStorage.getItem('color-theme')) {
       if (to === 'dark') {
@@ -59,7 +62,7 @@ const AccessibilityPopup: React.FC<TimeoutModalProps> = ({
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
-      contentLabel="Accessibility adjustments pop up"
+      contentLabel={t('a11y-popup.label')}
       style={customStyles}
     >
       <div
@@ -67,34 +70,30 @@ const AccessibilityPopup: React.FC<TimeoutModalProps> = ({
         data-cy="accessibility-modal"
       >
         <div className="flex items-center justify-between mb-[30px] ">
-          <h3 className="text-left">Acessibility adjustments</h3>
+          <h3 className="text-left">{t('a11y-popup.header')}</h3>
           <button
             className="p-2 cursor-pointer dark:text-white"
             onClick={onClose}
           >
-            <IoMdClose
-              //aria-label="close button"
-              aria-hidden="true"
-              size="24px"
-            />
+            <IoMdClose aria-hidden="true" size="24px" />
           </button>
         </div>
 
         <button
           onClick={() => changeTheme('light')}
-          aria-label="high contrast"
+          aria-label={t('a11y-popup.high-contrast')}
           className={`contrast-button bg-brand-blue text-white dark:bg-brand-darkBackground dark:border-white dark:text-white`}
         >
           <IoSunny size="36px" aria-hidden="true" />
-          <p className="font-bold mt-2">High contrast</p>
+          <p className="font-bold mt-2">{t('a11y-popup.high-contrast')}</p>
         </button>
         <button
           onClick={() => changeTheme('dark')}
-          aria-label="dark contrast"
+          aria-label={t('a11y-popup.dark-contrast')}
           className={`contrast-button mt-4 dark:bg-white dark:text-brand-darkBackground dark:border-white`}
         >
           <IoMoon size="36px" aria-hidden="true" />
-          <p className="font-bold mt-2">Dark contrast</p>
+          <p className="font-bold mt-2">{t('a11y-popup.dark-contrast')}</p>
         </button>
         <div className="flex flex-col items-center mt-5">
           <TextResizer />

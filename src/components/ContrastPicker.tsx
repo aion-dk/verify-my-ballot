@@ -1,8 +1,11 @@
 import React, { useCallback, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface ContrastPickerProps {}
 
 const ContrastPicker: React.FC<ContrastPickerProps> = () => {
+  const { t } = useTranslation()
+
   const changeTheme = (to: 'light' | 'dark') => {
     if (localStorage.getItem('color-theme')) {
       if (to === 'dark') {
@@ -29,7 +32,9 @@ const ContrastPicker: React.FC<ContrastPickerProps> = () => {
 
   return (
     <div className="flex items-center gap-3">
-      <p className="font-bold dark:text-white">Contrast options:</p>
+      <p className="font-bold dark:text-white">
+        {t('contrast-picker.contrast-options')}
+      </p>
 
       <button
         onClick={() => changeTheme('light')}

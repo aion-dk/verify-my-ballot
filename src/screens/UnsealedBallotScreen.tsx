@@ -1,5 +1,6 @@
 import { ReadableContestSelection } from '@aion-dk/js-client/dist/lib/av_client/types'
 import React, { useContext, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import ScreenMain from '../components/ScreenMain'
 import ClientContext from '../contexts/ClientContext'
@@ -14,6 +15,7 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
   >([])
   const VerifierClient = useContext(ClientContext)
   const linkResolver = useBoardSlugLinkResolver()
+  const { t } = useTranslation()
 
   useEffect(() => {
     try {
@@ -36,7 +38,7 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
 
   return (
     <ScreenMain>
-      <h1>Unsealed ballot</h1>
+      <h1>{t('unsealed-ballot.header')}</h1>
       <ul className="mb-[20px]" data-cy="ballot-choices">
         {contestSelections.map(cs => (
           <li key={cs.reference} className="dark:text-white">
@@ -52,7 +54,7 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
         }}
         data-cy="finish-button"
       >
-        Finish
+        {t('unsealed-ballot.button')}
       </button>
     </ScreenMain>
   )
