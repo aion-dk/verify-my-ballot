@@ -6,22 +6,15 @@ export const resources = {
   en: {
     translation: en,
   },
-  // fr: {
-  //   translation: {
-  //     'Welcome to React': 'Bienvenue à React et react-i18next',
-  //   },
-  // },
 }
 
-i18n
-  .use(initReactI18next) // Passes i18n down to react-i18next
-  .init({
-    resources,
-    lng: 'en',
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false, // React is already safe from XSS
-    },
-  })
+i18n.use(initReactI18next).init({
+  resources,
+  lng: 'en',
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+})
 
 export default i18n
