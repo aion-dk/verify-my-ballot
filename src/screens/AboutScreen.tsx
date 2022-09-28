@@ -1,12 +1,13 @@
 import React from 'react'
 import { FaQuestionCircle } from 'react-icons/fa'
 import AccessibleSpan from '../components/AccessibleSpan'
+import ScreenMain from '../components/ScreenMain'
 
 interface AboutScreenProps {}
 
 const AboutScreen: React.FC<AboutScreenProps> = () => {
   return (
-    <main id="content" className="page">
+    <ScreenMain>
       <h1>About VerifyMyBallot site</h1>
       <p className="max-w-[440px] page-content" role="text">
         This site serves as a ballot checking site to enable you to
@@ -43,7 +44,7 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
           </span>
         </p>
       </div>
-    </main>
+    </ScreenMain>
   )
 }
 

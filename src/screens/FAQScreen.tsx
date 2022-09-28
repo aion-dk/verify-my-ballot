@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { GoPlus, GoDash } from 'react-icons/go'
 import AccessibleSpan from '../components/AccessibleSpan'
+import ScreenMain from '../components/ScreenMain'
 import { mod } from '../utils'
 
 // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/menuitem_role
@@ -134,7 +135,7 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
   }
 
   return (
-    <main id="content" className="page">
+    <ScreenMain>
       <h1>Frequently Asked Questions</h1>
       <ul className="flex flex-col items-center" role="menu" data-cy="faq-menu">
         {faqs.map((faq, i) => {
@@ -145,7 +146,7 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
           }
         })}
       </ul>
-    </main>
+    </ScreenMain>
   )
 }
 

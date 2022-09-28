@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FiChevronRight } from 'react-icons/fi'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
+import ScreenMain from '../components/ScreenMain'
 
 interface GettingStartedScreenProps {}
 
@@ -10,7 +11,7 @@ const GettingStartedScreen: React.FC<GettingStartedScreenProps> = () => {
   const linkResolver = useBoardSlugLinkResolver()
 
   return (
-    <main id="content" className="page ">
+    <ScreenMain>
       <h1>Welcome to the VerifyMyBallot Site</h1>
       <p className="max-w-[320px] page-content">
         Use this site to verify your ballot was recorded and sealed correctly.
@@ -25,7 +26,7 @@ const GettingStartedScreen: React.FC<GettingStartedScreenProps> = () => {
         Get started
         <FiChevronRight color="#fff" size="24px" aria-hidden="true" />
       </button>
-    </main>
+    </ScreenMain>
   )
 }
 

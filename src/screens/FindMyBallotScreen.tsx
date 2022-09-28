@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AriaLiveRegionLoading from '../components/AriaLiveRegionLoading'
+import ScreenMain from '../components/ScreenMain'
 import ClientContext from '../contexts/ClientContext'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 import { getTheme } from '../utils'
@@ -29,7 +30,7 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
   }
 
   return (
-    <main id="content" className="page">
+    <ScreenMain>
       <h1>Find my ballot</h1>
       <p className="max-w-[260px] page-content" role="text">
         Enter the ballot checking code displayed in the Mark.It app and click{' '}
@@ -40,6 +41,7 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
         className="flex flex-col items-center gap-[14px]"
         onSubmit={async e => {
           e.preventDefault()
+          setInputError(false)
 
           try {
             setAriaLoading(true)
@@ -57,24 +59,26 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
         }}
       >
         <AriaLiveRegionLoading loading={ariaLoading} />
-        <div
-          id="ballot-code-invalid"
-          className="bg-brand-orange dark:bg-brand-yellow p-[25px] max-w-[420px] mb-[20px]"
-          style={{ display: inputError ? 'block' : 'none' }}
-        >
-          <h3 className="mb-[20px] dark:text-brand-darkBackground">
-            Tracking Code Not Found
-          </h3>
-          <p className="font-bold text-center text-brand-dark">
-            Please verify you entered the tracking code correctly. Be sure to
-            match case.
-          </p>
-        </div>
+        {inputError && (
+          <div
+            id="ballot-code-invalid"
+            className="bg-brand-orange dark:bg-brand-yellow p-[25px] max-w-[420px] mb-[20px]"
+            role="alert"
+            aria-live="assertive"
+          >
+            <h3 className="mb-[20px] dark:text-brand-darkBackground">
+              Tracking Code Not Found
+            </h3>
+            <p className="font-bold text-center text-brand-dark">
+              Please verify you entered the tracking code correctly. Be sure to
+              match case.
+            </p>
+          </div>
+        )}
         <input
           type="text"
           value={ballotCheckingCode}
           onChange={e => setBallotCheckingCode(e.target.value)}
-          required
           placeholder="Ballot checking code"
           className="placeholder-gray-300"
           style={{ borderColor: inputError ? getBg() : '#000' }}
@@ -85,7 +89,7 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
           Enter
         </button>
       </form>
-    </main>
+    </ScreenMain>
   )
 }
 

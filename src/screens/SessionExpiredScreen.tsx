@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { TbMoodSad } from 'react-icons/tb'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
+import ScreenMain from '../components/ScreenMain'
 
 interface SessionExpiredScreenProps {}
 
@@ -9,7 +10,7 @@ const SessionExpiredScreen: React.FC<SessionExpiredScreenProps> = () => {
   const linkResolver = useBoardSlugLinkResolver()
 
   return (
-    <main id="content" className="page">
+    <ScreenMain>
       <h1>Session expired</h1>
       <div className="text-brand-dark dark:text-white">
         <TbMoodSad size="90px" aria-hidden="true" />
@@ -22,7 +23,7 @@ const SessionExpiredScreen: React.FC<SessionExpiredScreenProps> = () => {
       <Link className="button" to={linkResolver('')} data-cy="reset-button">
         Reset
       </Link>
-    </main>
+    </ScreenMain>
   )
 }
 

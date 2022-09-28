@@ -5,6 +5,7 @@ import usePollingScreenTimeout from '../hooks/usePollingScreenTimeout'
 import AccessibleSpan from '../components/AccessibleSpan'
 import ClientContext from '../contexts/ClientContext'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
+import ScreenMain from '../components/ScreenMain'
 
 interface PasskeyScreenProps {}
 
@@ -35,7 +36,7 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
   )
 
   return (
-    <main id="content" className="page">
+    <ScreenMain>
       <h1>Passkey</h1>
       <p className="max-w-[420px] page-content">
         Please confirm that the following key matches the one displayed in the
@@ -55,7 +56,7 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
           'You have to confirm that the pairing codes match in the Mark.It app.'
         }
       />
-    </main>
+    </ScreenMain>
   )
 }
 

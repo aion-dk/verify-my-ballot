@@ -1,4 +1,5 @@
 import React, { useCallback, useContext } from 'react'
+import ScreenMain from '../components/ScreenMain'
 import TimeoutModal from '../components/TimeoutModal'
 import ClientContext from '../contexts/ClientContext'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
@@ -37,7 +38,7 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
   >(pollingAction, nextPage)
 
   return (
-    <main id="content" className="page">
+    <ScreenMain>
       <h1>Ballot found</h1>
       <p className="max-w-[280px] page-content" role="text">
         Tap the <strong>Code entered</strong> button in the Mark.It app.
@@ -53,7 +54,7 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
           </p>
         }
       />
-    </main>
+    </ScreenMain>
   )
 }
 
