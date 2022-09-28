@@ -1,5 +1,4 @@
 {
-  "electionName": "Election name",
   "faqs": [
     {
       "questionTranslationKey": "faq.question-text-1",
