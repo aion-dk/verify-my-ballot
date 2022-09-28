@@ -1,0 +1,36 @@
+{
+  "electionName": "Election name",
+  "faqs": [
+    {
+      "question": "Where do I find my ballot tracking code?",
+      "answer": "Placeholder answer"
+    },
+    {
+      "question": "My ballot is not found. After I input the ballot tracking code, I am getting an error message.",
+      "answer": "Placeholder answer"
+    },
+    {
+      "question": "The displayed passkey does not match. What do I do?",
+      "answer": "Placeholder answer"
+    },
+    {
+      "question": "Can I submit a ballot on this site?",
+      "answer": "Placeholder answer"
+    },
+    {
+      "question": "I want to submit my ballot. What do I do?",
+      "answer": "You must submit your ballot from the Mark.It app to complete the voting process. In case of any problems you should contact your local election office and talk to the election official - phone number: 090090990, email: localeo@yourelection.com"
+    }
+  ],
+  "colors": {
+    "gray": "#f5f5f5",
+    "dark": "#1d1934",
+    "blue": "#1226aa",
+    "background": "#F8F8F8",
+    "orange": "#F4BD8A",
+    "yellow": "#FDF367",
+    "darkBackground": "#1A1A1A",
+    "sliderGray": "#363D47",
+    "sliderBlue": "#2239A9"
+  }
+}

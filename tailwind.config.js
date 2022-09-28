@@ -1,3 +1,5 @@
+const config = require('./src/config/config.json')
+
 module.exports = {
   darkMode: 'class',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -11,7 +13,7 @@ module.exports = {
         sm: '1rem',
         base: '1.125rem',
         lg: '1.25rem',
-        'xl': '1.5rem',
+        xl: '1.5rem',
         '2xl': '1.875rem',
         '3xl': '2.25rem',
         '5xl': '3rem',
@@ -31,13 +33,7 @@ module.exports = {
       },
       colors: {
         brand: {
-          gray: '#f5f5f5',
-          dark: '#1d1934',
-          blue: '#1226aa',
-          background: '#F8F8F8',
-          orange: '#F4BD8A',
-          yellow: '#FDF367',
-          darkBackground: '#1A1A1A',
+          ...config.colors,
         },
       },
     },
