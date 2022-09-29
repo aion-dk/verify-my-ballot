@@ -53,7 +53,7 @@ const PasskeyScreen: React.FC<PasskeyScreenProps> = () => {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         timeout={timeout}
-        body={t('passkey.timeout')}
+        body={<p>{t('passkey.timeout')}</p>}
       />
     </ScreenMain>
   )
