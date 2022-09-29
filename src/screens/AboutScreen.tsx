@@ -14,7 +14,7 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
       <h1>{t('about.header')}</h1>
       <p className="max-w-[440px] page-content" role="text">
         <Trans i18nKey="about.description">
-          This site serves as a ballot checking site to enable you to{' '}
+          This site serves as a ballot checking site to enable you to
           <strong> verify that your ballot was recorded correctly </strong> in
           your voting app and will be cast correctly in the digital ballot box.
         </Trans>

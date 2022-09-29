@@ -109,7 +109,7 @@ const AppFooter: React.FC<AppFooterProps> = () => {
         {steps.map((step, index) => {
           return (
             <div className="step-text text-elm" key={index}>
-              <div>{step.name}</div>{' '}
+              <div>{step.name}</div>
             </div>
           )
         })}

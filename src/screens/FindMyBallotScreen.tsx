@@ -36,7 +36,7 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
       <h1>{t('find-my-ballot.header')}</h1>
       <p className="max-w-[260px] page-content" role="text">
         <Trans i18nKey="find-my-ballot.description">
-          Enter the ballot checking code displayed in the Mark.It app and click{' '}
+          Enter the ballot checking code displayed in the Mark.It app and click
           <strong>Enter</strong>
         </Trans>
       </p>
