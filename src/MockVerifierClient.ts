@@ -38,13 +38,11 @@ export default class MockVerifierClient extends AVVerifier {
   }
   public findBallot(trackingCode: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (!this._init) reject('Not initialized')
+      if (!this._init) reject('Not initialized')
 
-        this._trackingCode = trackingCode
-        if (MOCKED_BALLOTS_DB[trackingCode]) resolve('success')
-        else reject('Ballot not found')
-      }, MOCK_RESPONSE_MS)
+      this._trackingCode = trackingCode
+      if (MOCKED_BALLOTS_DB[trackingCode]) resolve('success')
+      else reject('Ballot not found')
     })
   }
   public pollForSpoilRequest(): Promise<string> {
