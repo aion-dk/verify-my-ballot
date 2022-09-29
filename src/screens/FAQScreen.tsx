@@ -72,7 +72,7 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
             <GoDash
               color="#FFF"
               size={40}
-              title="Close menu"
+              title={t('faq.close-menu-label')}
               aria-hidden="true"
             />
           </div>
@@ -116,7 +116,11 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
           </span>
         </p>
         <div className="text-brand-blue dark:text-white">
-          <GoPlus size="26px" title="Open menu" aria-hidden="true" />
+          <GoPlus
+            size="26px"
+            title={t('faq.open-menu-label')}
+            aria-hidden="true"
+          />
         </div>
       </li>
     )

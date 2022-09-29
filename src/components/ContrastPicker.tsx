@@ -37,6 +37,7 @@ const ContrastPicker: React.FC<ContrastPickerProps> = () => {
       </p>
 
       <button
+        aria-label={t('contrast-picker.change-to-normal')}
         onClick={() => changeTheme('light')}
         className="w-[54px] h-[42px] bg-brand-blue p-[2px] flex justify-center"
       >
@@ -45,6 +46,7 @@ const ContrastPicker: React.FC<ContrastPickerProps> = () => {
         </div>
       </button>
       <button
+        aria-label={t('contrast-picker.change-to-high')}
         onClick={() => changeTheme('dark')}
         className="w-[54px] h-[42px] text-white items-center dark:border-white bg-brand-darkBackground border-brand-darkBackground  border-2 p-[2px] flex justify-center"
       >

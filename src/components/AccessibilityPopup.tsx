@@ -72,10 +72,15 @@ const AccessibilityPopup: React.FC<TimeoutModalProps> = ({
         <div className="flex items-center justify-between mb-[30px] ">
           <h3 className="text-left">{t('a11y-popup.header')}</h3>
           <button
+            aria-label={t('a11y-popup.close-button-label')}
             className="p-2 cursor-pointer dark:text-white"
             onClick={onClose}
           >
-            <IoMdClose aria-hidden="true" size="24px" />
+            <IoMdClose
+              aria-hidden="true"
+              size="24px"
+              title={t('a11y-popup.close-button-label')}
+            />
           </button>
         </div>
 
