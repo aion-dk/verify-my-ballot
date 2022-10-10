@@ -33,10 +33,10 @@ workflows:
             - "sandbox-deployment"
           requires:
             - build-and-push
-#          filters:
-#            branches:
-#              only:
-#                - main
+          filters:
+            branches:
+              only:
+                - main
 
 jobs:
   build-and-push:
