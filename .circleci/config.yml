@@ -1,0 +1,101 @@
+version: 2.1
+
+orbs:
+  cypress: cypress-io/cypress@2.2.0
+  slack: circleci/slack@4.10.1
+  aws-ecr: circleci/aws-ecr@8.1.2
+  docker: assemblyvoting/docker@1.1.3
+
+executors:
+  node-14-7-6:
+    docker:
+      - image: 'cypress/browsers:node14.17.6-chrome100-ff98'
+
+workflows:
+  build:
+    jobs:
+      - cypress/run:
+          executor: node-14-7-6
+          yarn: true
+          start: yarn start-test
+          wait-on: 'http://localhost:3005'
+          browser: chrome
+          store_artifacts: true
+      - build-and-push:
+          context:
+            - "GIT"
+            - "ECR-RW"
+            - "slack"
+          requires:
+            - cypress/run
+      - deployment-sandbox01:
+          context:
+            - "sandbox-deployment"
+          requires:
+            - build-and-push
+          filters:
+            branches:
+              only:
+                - main
+
+jobs:
+  build-and-push:
+    machine:
+      image: ubuntu-2204:2022.04.2
+    environment:
+      ECR_REGISTRY_ID: "534003348933"
+      ECR_REPOSITORY: "verify-my-ballot"
+      AWS_REGION: "eu-west-1"
+      DOCKER_BUILDKIT: "1"
+      SSH_AUTH_SOCK: /tmp/circleci/ssh/ssh_agent.sock
+    steps:
+      - checkout
+      - aws-ecr/ecr-login:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-cli-version: latest
+          public-registry: false
+          region: eu-west-1
+          registry-id: ECR_REGISTRY_ID
+      - docker/ssh-access:
+          VAR_SSH_KEY: PULL_SSH_KEY
+      - run:
+          name: Build verify-my-ballot
+          command: |
+            export ECR_REGISTRY="${ECR_REGISTRY_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+            docker build --ssh default -t verify-my-ballot:latest --file="./Dockerfile" ./
+            docker tag verify-my-ballot:latest "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":latest
+            docker tag verify-my-ballot:latest "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":"$(date "+%d-%m-%Y")"
+            docker tag verify-my-ballot:latest "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":"${CIRCLE_SHA1}"
+      - run:
+          name: Push verify-my-ballot
+          command: |
+            export ECR_REGISTRY="${ECR_REGISTRY_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+            docker push "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":latest
+            docker push "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":"$(date "+%d-%m-%Y")"
+            docker push "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":"${CIRCLE_SHA1}"
+
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+
+  deployment-sandbox01:
+    circleci_ip_ranges: true
+    docker:
+      - image: cimg/base:current
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "65:09:e9:f1:ab:b3:ff:43:b8:61:59:74:ce:08:2d:05"
+      - checkout
+      - run:
+          name: Deploy verify-my-ballot to sandbox01
+          command: |
+            sudo apt-get update && sudo apt-get install -y rsync
+            ssh-keyscan ${sandbox_ip} >> "${HOME}"/.ssh/known_hosts
+            sed -i "s/PLACEHOLDER/${CIRCLE_SHA1}/g" deployment/sandbox.docker-compose.yml
+            rsync --chown=${sandbox_username}:docker --chmod=660 -av deployment/sandbox.docker-compose.yml ${sandbox_username}@${sandbox_ip}:/docker/us/services/verify-my-ballot.yml
+            ssh ${sandbox_username}@${sandbox_ip} '/docker/docker-login.sh; /docker/us/run.sh verify-my-ballot'
