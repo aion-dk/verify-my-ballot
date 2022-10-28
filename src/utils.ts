@@ -12,3 +12,7 @@ export function mod(n: number, m: number) {
 export const getTheme = () => {
   return localStorage.getItem('color-theme')
 }
+
+export function sleep(ms: number) {
+  return new Promise((resolve, _reject) => setTimeout(() => resolve(null), ms))
+}

@@ -1,15 +1,19 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
+import ScreenMain from '../components/ScreenMain'
 
 interface ErrorScreenProps {}
 
 const ErrorScreen: React.FC<ErrorScreenProps> = () => {
+  const { t } = useTranslation()
+
   return (
-    <main className="page items-center">
-      <h1 className="header-bigger text-brand-blue  mt-12 md:mt-20">Error</h1>
-      <p className="content max-w-550">
-        A valid election could not be loaded based on the inferred information.
-      </p>
-    </main>
+    <ScreenMain className="items-center">
+      <h1 className="header-bigger text-brand-blue  mt-12 md:mt-20">
+        {t('error.header')}
+      </h1>
+      <p className="content max-w-550">{t('error.description')}</p>
+    </ScreenMain>
   )
 }
 

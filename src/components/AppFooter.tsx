@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
 type Step = {
@@ -6,33 +7,37 @@ type Step = {
   url: string
 }
 
-const steps: Step[] = [
-  {
-    name: 'Find my ballot',
-    url: 'find-my-ballot',
-  },
-  {
-    name: 'Ballot found',
-    url: 'ballot-found',
-  },
-  {
-    name: 'Passkey',
-    url: 'passkey',
-  },
-  {
-    name: 'Unsealed ballot',
-    url: 'unsealed-ballot',
-  },
-  {
-    name: 'Finish',
-    url: 'finish',
-  },
-]
-
 interface AppFooterProps {}
 
 const AppFooter: React.FC<AppFooterProps> = () => {
   const location = useLocation()
+  const { t } = useTranslation()
+
+  const steps: Step[] = useMemo(
+    () => [
+      {
+        name: t('footer.find-my-ballot'),
+        url: 'find-my-ballot',
+      },
+      {
+        name: t('footer.ballot-found'),
+        url: 'ballot-found',
+      },
+      {
+        name: t('footer.passkey'),
+        url: 'passkey',
+      },
+      {
+        name: t('footer.unsealed-ballot'),
+        url: 'unsealed-ballot',
+      },
+      {
+        name: t('footer.finish'),
+        url: 'finish',
+      },
+    ],
+    [t]
+  )
 
   // Update progress on location change
   useEffect(() => {
@@ -85,7 +90,7 @@ const AppFooter: React.FC<AppFooterProps> = () => {
         bar.classList.remove('tiles')
       }
     })
-  }, [location])
+  }, [location, steps])
 
   const shouldRenderProgress = () => {
     const activeIndex = steps.findIndex(object => {
@@ -99,12 +104,15 @@ const AppFooter: React.FC<AppFooterProps> = () => {
   }
 
   return (
-    <footer className="bg-brand-background dark:bg-brand-darkBackground py-[30px] flex flex-col items-center">
+    <footer
+      className="bg-brand-background dark:bg-brand-darkBackground py-[30px] flex flex-col items-center"
+      aria-hidden="true"
+    >
       <div className="flex items-end mb-[16px] justify-between pl-[36px] md:pl-[110px] lg:pl-[146px] w-[350px] md:w-[700px] lg:w-[900px]">
         {steps.map((step, index) => {
           return (
             <div className="step-text text-elm" key={index}>
-              <div>{step.name}</div>{' '}
+              <div>{step.name}</div>
             </div>
           )
         })}

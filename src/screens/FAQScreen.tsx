@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { GoPlus, GoDash } from 'react-icons/go'
 import AccessibleSpan from '../components/AccessibleSpan'
+import ScreenMain from '../components/ScreenMain'
 import { mod } from '../utils'
+import config from '../config/config.json'
+import { useTranslation } from 'react-i18next'
 
 // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/menuitem_role
 function isOpenMenuKey(key: string): boolean {
@@ -9,39 +12,17 @@ function isOpenMenuKey(key: string): boolean {
 }
 
 type FAQ = {
-  question: string
-  answer: string
+  questionTranslationKey: string
+  answerTranslationKey: string
 }
 
-const faqs: FAQ[] = [
-  {
-    question: 'Where do I find my ballot tracking code?',
-    answer: 'Placeholder answer',
-  },
-  {
-    question:
-      'My ballot is not found. After I input the ballot tracking code, I am getting an error message.',
-    answer: 'Placeholder answer',
-  },
-  {
-    question: 'The displayed passkey does not match. What do I do?',
-    answer: 'Placeholder answer',
-  },
-  {
-    question: 'Can I submit a ballot on this site?',
-    answer: 'Placeholder answer',
-  },
-  {
-    question: 'I want to submit my ballot. What do I do?',
-    answer:
-      'You must submit your ballot from the Mark.It app to complete the voting process. In case of any problems you should contact your local election office and talk to the election official - phone number: 090090990, email: localeo@yourelection.com',
-  },
-]
+const faqs = config.faqs as FAQ[]
 
 interface FAQScreenProps {}
 
 const FAQScreen: React.FC<FAQScreenProps> = () => {
   const [activeQ, setActiveQ] = useState(-1)
+  const { t } = useTranslation()
 
   const handleChange = (i: number) => {
     if (i === activeQ) {
@@ -80,22 +61,31 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
       >
         <div className="flex justify-between h-[60px] pl-[6px]">
           <p>
-            <AccessibleSpan screenReaderText="Question:">Q: </AccessibleSpan>
-            <span className="font-semibold">{faq.question}</span>
+            <AccessibleSpan screenReaderText={t('faq.question-sr')}>
+              Q:{' '}
+            </AccessibleSpan>
+            <span className="font-semibold">
+              {t(faq.questionTranslationKey as any)}
+            </span>
           </p>
           <div className="self-center mr-[6px]">
-            <GoDash color="#C04535" title="Close menu" aria-hidden="true" />
+            <GoDash
+              color="#FFF"
+              size={40}
+              title={t('faq.close-menu-label')}
+              aria-hidden="true"
+            />
           </div>
         </div>
 
         <p className="bg-white text-brand-dark dark:bg-transparent dark:text-white dark:border-t-2 p-[8px] text-[18px]">
           <AccessibleSpan
-            screenReaderText="Answer:"
+            screenReaderText={t('faq.answer-sr')}
             className="text-[18px] font-semibold"
           >
             A:{' '}
           </AccessibleSpan>
-          {faq.answer}
+          {t(faq.answerTranslationKey as any)}
         </p>
       </li>
     )
@@ -118,19 +108,27 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
         }}
       >
         <p>
-          <AccessibleSpan screenReaderText="Question:">Q: </AccessibleSpan>
-          <span className="font-semibold">{faq.question}</span>
+          <AccessibleSpan screenReaderText={t('faq.question-sr')}>
+            Q:{' '}
+          </AccessibleSpan>
+          <span className="font-semibold">
+            {t(faq.questionTranslationKey as any)}
+          </span>
         </p>
         <div className="text-brand-blue dark:text-white">
-          <GoPlus size="26px" title="Open menu" aria-hidden="true" />
+          <GoPlus
+            size="26px"
+            title={t('faq.open-menu-label')}
+            aria-hidden="true"
+          />
         </div>
       </li>
     )
   }
 
   return (
-    <main id="content" className="page">
-      <h1>Frequently Asked Questions</h1>
+    <ScreenMain>
+      <h1>{t('faq.header')}</h1>
       <ul className="flex flex-col items-center" role="menu" data-cy="faq-menu">
         {faqs.map((faq, i) => {
           if (i === activeQ) {
@@ -140,7 +138,7 @@ const FAQScreen: React.FC<FAQScreenProps> = () => {
           }
         })}
       </ul>
-    </main>
+    </ScreenMain>
   )
 }
 

@@ -1,4 +1,6 @@
 import React, { useCallback, useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import ScreenMain from '../components/ScreenMain'
 import TimeoutModal from '../components/TimeoutModal'
 import ClientContext from '../contexts/ClientContext'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
@@ -9,6 +11,7 @@ interface BallotFoundScreenProps {}
 const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
   const VerifierClient = useContext(ClientContext)
   const linkResolver = useBoardSlugLinkResolver()
+  const { t } = useTranslation()
 
   const pollingAction = useCallback(async () => {
     try {
@@ -37,10 +40,12 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
   >(pollingAction, nextPage)
 
   return (
-    <main id="content" className="page">
-      <h1>Ballot found</h1>
+    <ScreenMain>
+      <h1>{t('ballot-found.header')}</h1>
       <p className="max-w-[280px] page-content" role="text">
-        Tap the <strong>Code entered</strong> button in the Mark.It app.
+        <Trans i18nKey="ballot-found.description">
+          Tap the <strong>Code entered</strong> button in the Mark.It app.
+        </Trans>
       </p>
 
       <TimeoutModal
@@ -49,11 +54,13 @@ const BallotFoundScreen: React.FC<BallotFoundScreenProps> = () => {
         timeout={timeout}
         body={
           <p role="text">
-            Tap the <strong>Code entered</strong> button in the Mark.It app.
+            <Trans i18nKey="ballot-found.timeout">
+              Tap the <strong>Code entered</strong> button in the Mark.It app.
+            </Trans>
           </p>
         }
       />
-    </main>
+    </ScreenMain>
   )
 }
 

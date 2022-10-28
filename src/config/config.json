@@ -1,0 +1,35 @@
+{
+  "faqs": [
+    {
+      "questionTranslationKey": "faq.question-text-1",
+      "answerTranslationKey": "faq.answer-text-1"
+    },
+    {
+      "questionTranslationKey": "faq.question-text-2",
+      "answerTranslationKey": "faq.answer-text-2"
+    },
+    {
+      "questionTranslationKey": "faq.question-text-3",
+      "answerTranslationKey": "faq.answer-text-3"
+    },
+    {
+      "questionTranslationKey": "faq.question-text-4",
+      "answerTranslationKey": "faq.answer-text-4"
+    },
+    {
+      "questionTranslationKey": "faq.question-text-5",
+      "answerTranslationKey": "faq.answer-text-5"
+    }
+  ],
+  "colors": {
+    "gray": "#f5f5f5",
+    "dark": "#1d1934",
+    "blue": "#1226aa",
+    "background": "#F8F8F8",
+    "orange": "#F4BD8A",
+    "yellow": "#FDF367",
+    "darkBackground": "#1A1A1A",
+    "sliderGray": "#363D47",
+    "sliderBlue": "#2239A9"
+  }
+}

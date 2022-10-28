@@ -1,17 +1,23 @@
 import React from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { FaQuestionCircle } from 'react-icons/fa'
 import AccessibleSpan from '../components/AccessibleSpan'
+import ScreenMain from '../components/ScreenMain'
 
 interface AboutScreenProps {}
 
 const AboutScreen: React.FC<AboutScreenProps> = () => {
+  const { t } = useTranslation()
+
   return (
-    <main id="content" className="page">
-      <h1>About VerifyMyBallot site</h1>
+    <ScreenMain>
+      <h1>{t('about.header')}</h1>
       <p className="max-w-[440px] page-content" role="text">
-        This site serves as a ballot checking site to enable you to
-        <strong> verify that your ballot was recorded correctly </strong>
-        in your voting app and will be cast correctly in the digital ballot box.
+        <Trans i18nKey="about.description">
+          This site serves as a ballot checking site to enable you to
+          <strong> verify that your ballot was recorded correctly </strong> in
+          your voting app and will be cast correctly in the digital ballot box.
+        </Trans>
       </p>
 
       <div className="h-[2px] w-[60px] bg-red-500"></div>
@@ -20,29 +26,30 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
         <div className="px-[8px] text-brand-blue dark:text-white">
           <FaQuestionCircle
             size="50px"
-            aria-label="Question mark icon"
-            title="Question mark icon"
+            aria-label={t('about.question-icon-label')}
+            title={t('about.question-icon-label')}
+            aria-hidden="true"
           />
         </div>
         <p className="flex flex-col">
           <span className="font-semibold">
-            <AccessibleSpan screenReaderText="Question:">Q: </AccessibleSpan>
-            Can i submit my ballot on this site?
+            <AccessibleSpan screenReaderText={t('about.question-sr')}>
+              Q:{' '}
+            </AccessibleSpan>
+            {t('about.question-text')}
           </span>
           <span className="max-w-[320px]">
             <AccessibleSpan
-              screenReaderText="Answer:"
+              screenReaderText={t('about.answer-sr')}
               className="font-semibold"
             >
               A:{' '}
             </AccessibleSpan>
-            This site cannot submit your ballot for casting. Remember when
-            finished with the ballot check, you must submit your ballot from the
-            Mark.It app to complete the voting process.
+            {t('about.answer-text')}
           </span>
         </p>
       </div>
-    </main>
+    </ScreenMain>
   )
 }
 

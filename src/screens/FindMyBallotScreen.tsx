@@ -1,5 +1,8 @@
 import React, { useContext, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import AriaLiveRegionLoading from '../components/AriaLiveRegionLoading'
+import ScreenMain from '../components/ScreenMain'
 import ClientContext from '../contexts/ClientContext'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 import { getTheme } from '../utils'
@@ -12,9 +15,11 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
   const [inputError, setInputError] = useState(false)
   const VerifierClient = useContext(ClientContext)
   const linkResolver = useBoardSlugLinkResolver()
+  const [ariaLoading, setAriaLoading] = useState(false)
+  const { t } = useTranslation()
 
   const inputAriaAttributes: React.AriaAttributes = {
-    'aria-label': 'Ballot checking code',
+    'aria-label': t('find-my-ballot.input-label'),
   }
   if (inputError) {
     inputAriaAttributes['aria-invalid'] = true
@@ -27,19 +32,23 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
   }
 
   return (
-    <main id="content" className="page">
-      <h1>Find my ballot</h1>
+    <ScreenMain>
+      <h1>{t('find-my-ballot.header')}</h1>
       <p className="max-w-[260px] page-content" role="text">
-        Enter the ballot checking code displayed in the Mark.It app and click{' '}
-        <strong>Enter</strong>
+        <Trans i18nKey="find-my-ballot.description">
+          Enter the ballot checking code displayed in the Mark.It app and click
+          <strong>Enter</strong>
+        </Trans>
       </p>
 
       <form
         className="flex flex-col items-center gap-[14px]"
         onSubmit={async e => {
           e.preventDefault()
+          setInputError(false)
 
           try {
+            setAriaLoading(true)
             console.debug('Finding ballot...')
             await VerifierClient.findBallot(ballotCheckingCode)
             console.debug('Ballot found!')
@@ -48,38 +57,42 @@ const FindMyBallotScreen: React.FC<FindMyBallotScreenProps> = () => {
             console.debug('An error occured while finding ballot:')
             console.debug(e)
             setInputError(true)
+          } finally {
+            setAriaLoading(false)
           }
         }}
       >
-        <div
-          id="ballot-code-invalid"
-          className="bg-brand-orange dark:bg-brand-yellow p-[25px] max-w-[420px] mb-[20px]"
-          style={{ display: inputError ? 'block' : 'none' }}
-        >
-          <h3 className="mb-[20px] dark:text-brand-darkBackground">
-            Tracking Code Not Found
-          </h3>
-          <p className="font-bold text-center text-brand-dark">
-            Please verify you entered the tracking code correctly. Be sure to
-            match case.
-          </p>
-        </div>
+        <AriaLiveRegionLoading loading={ariaLoading} />
+        {inputError && (
+          <div
+            id="ballot-code-invalid"
+            className="bg-brand-orange dark:bg-brand-yellow p-[25px] max-w-[420px] mb-[20px]"
+            role="alert"
+            aria-live="assertive"
+          >
+            <h3 className="mb-[20px] dark:text-brand-darkBackground">
+              {t('find-my-ballot.error-header')}
+            </h3>
+            <p className="font-bold text-center text-brand-dark">
+              {t('find-my-ballot.error-description')}
+            </p>
+          </div>
+        )}
         <input
           type="text"
           value={ballotCheckingCode}
           onChange={e => setBallotCheckingCode(e.target.value)}
-          required
-          placeholder="Ballot checking code"
+          placeholder={t('find-my-ballot.input-placeholder')}
           className="placeholder-gray-300"
           style={{ borderColor: inputError ? getBg() : '#000' }}
           data-cy="ballot-checking-code"
           {...inputAriaAttributes}
         />
         <button className="button" type="submit" data-cy="find-ballot-submit">
-          Enter
+          {t('find-my-ballot.button')}
         </button>
       </form>
-    </main>
+    </ScreenMain>
   )
 }
 

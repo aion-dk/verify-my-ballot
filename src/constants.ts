@@ -5,7 +5,7 @@ export const BASE_ELECTION_URL =
 const _timeoutRetries = process.env.REACT_APP_TIMEOUT_RETRIES
 export const TIMEOUT_RETRIES = _timeoutRetries ? parseInt(_timeoutRetries) : 30
 
-export const MOCK_RESPONSE_MS = 20000
+export const MOCK_RESPONSE_MS = 6000
 
 const _timeoutReminderTime = process.env.REACT_APP_TIMEOUT_REMINDER_TIME
 export const TIMEOUT_REMINDER_TIME = _timeoutReminderTime
