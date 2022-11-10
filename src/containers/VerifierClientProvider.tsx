@@ -42,8 +42,10 @@ const VerifierClientProvider: React.FC<{ children?: React.ReactNode }> = ({
       }
     }
 
-    initialize()
-  }, [boardSlug, navigate])
+    if (!verifierClient) {
+      initialize()
+    }
+  }, [boardSlug, navigate, verifierClient])
 
   if (!verifierClient) return <></>
 
