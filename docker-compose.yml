@@ -12,6 +12,6 @@ services:
       - "/usr/src/app/node_modules"
     environment:
       REACT_APP_BASE_ELECTION_URL: "http://localhost:3003"
-      REACT_APP_TIMEOUT_REMINDER_TIME: 5
-      REACT_APP_TIMEOUT_RETRIES: 30
+      REACT_APP_TIMEOUT_REMINDER_TIME: 60
+      REACT_APP_TIMEOUT_RETRIES: 100
       REACT_APP_STRICT: false
