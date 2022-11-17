@@ -35,9 +35,12 @@ yarn
 
 ## Environment variables
 
-To tailor the project to your setup, you should double check the use of environment variables in relation to js-client, as explained in the documentation of the project's use of [JS Client](#js-client).
+To tailor the project to your setup, you should configure the
+environment variables in the js-client, as explained in the
+documentation of the project's use of [JS Client](#js-client).
 
-You're welcome to either use the docker-compose enviroment setting or use the comand below to set up your local ENV file.
+You're also able to either use the docker-compose environment
+setting or use the command below to set up your local ENV file.
 
 ```bash
 $ cp .env{.example,}
