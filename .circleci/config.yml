@@ -63,7 +63,7 @@ jobs:
           name: Build verify-my-ballot
           command: |
             export ECR_REGISTRY="${ECR_REGISTRY_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
-            docker build --ssh default -t verify-my-ballot:latest --file="./Dockerfile" ./
+            docker build --ssh default -t verify-my-ballot:latest --file="./Dockerfile" --target="development" ./
             docker tag verify-my-ballot:latest "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":latest
             docker tag verify-my-ballot:latest "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":"$(date "+%d-%m-%Y")"
             docker tag verify-my-ballot:latest "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":"${CIRCLE_SHA1}"
