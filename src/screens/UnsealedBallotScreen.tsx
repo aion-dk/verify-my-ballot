@@ -40,7 +40,7 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
     <ScreenMain>
       <h1>{t('unsealed-ballot.header')}</h1>
 
-      <ul className="mb-[20px]" style="overflow-y: auto;" data-cy="ballot-choices">
+      <ul className="mb-[20px]" style={{ 'overflow-y': 'auto' }} data-cy="ballot-choices">
         {contestSelections.map(cs => (
           <li key={cs.reference} className="dark:text-white">
             <span className="font-bold dark:text-white">{cs.title}: </span>

@@ -88,7 +88,7 @@ const PageLayout: React.FC = () => {
     <VerifierClientProvider>
       <AppHeader />
 
-      <div className="h-full" style="overflow-y: auto;">
+      <div className="h-full" style={{ 'overflow-y': 'auto' }}>
         <Outlet />
       </div>
 
