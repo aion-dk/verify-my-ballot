@@ -63,7 +63,7 @@ jobs:
           name: Build verify-my-ballot
           command: |
             export ECR_REGISTRY="${ECR_REGISTRY_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
-            docker build --ssh default -t verify-my-ballot:latest --file="./Dockerfile" ./
+            docker build --ssh default -t verify-my-ballot:latest --file="./Dockerfile" --target="development" ./
             docker tag verify-my-ballot:latest "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":latest
             docker tag verify-my-ballot:latest "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":"$(date "+%d-%m-%Y")"
             docker tag verify-my-ballot:latest "${ECR_REGISTRY}"/"${ECR_REPOSITORY}":"${CIRCLE_SHA1}"
@@ -97,5 +97,5 @@ jobs:
             sudo apt-get update && sudo apt-get install -y rsync
             ssh-keyscan ${sandbox_ip} >> "${HOME}"/.ssh/known_hosts
             sed -i "s/PLACEHOLDER/${CIRCLE_SHA1}/g" deployment/sandbox.docker-compose.yml
-            rsync --chown=${sandbox_username}:docker --chmod=660 -av deployment/sandbox.docker-compose.yml ${sandbox_username}@${sandbox_ip}:/docker/us/services/verify-my-ballot.yml
-            ssh ${sandbox_username}@${sandbox_ip} '/docker/docker-login.sh; /docker/us/run.sh verify-my-ballot'
+            rsync --chown=${sandbox_username}:docker --chmod=660 -av deployment/sandbox.docker-compose.yml ${sandbox_username}@${sandbox_ip}:/docker/us/services/vmb.yml
+            ssh ${sandbox_username}@${sandbox_ip} '/docker/docker-login.sh; /docker/us/run.sh vmb'

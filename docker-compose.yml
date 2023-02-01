@@ -1,9 +1,11 @@
 version: "3"
 services:
-  verifier:
+  vmb:
     # image: "534003348933.dkr.ecr.eu-west-1.amazonaws.com/verify-my-ballot:main"
     image: "verify-my-ballot:latest"
-    build: "."
+    build:
+      context: "."
+      target: development
     command: "yarn start"
     ports:
       - "3005:3005"
