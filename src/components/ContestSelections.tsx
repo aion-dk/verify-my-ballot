@@ -4,13 +4,9 @@ interface ContestSelectionProps {
   selections: ReadableContestSelection[]
 }
 
-const styling = {
-  'overflow-y': 'auto'
-}
-
 const ContestSelections = ({ selections }: any) => {
   return (
-    <ol className="mb-[20px]" data-cy="ballot-choices">
+    <ol className="mb-[20px] pl-4 overflow-y-auto" data-cy="ballot-choices">
       {selections.map((cs: ReadableContestSelection) => (
         <li key={cs.reference} className="dark:text-white">
           <span className="font-bold dark:text-white">{cs.title}: </span>
