@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import ScreenMain from '../components/ScreenMain'
+import ContestSelections from '../components/ContestSelections'
 import ClientContext from '../contexts/ClientContext'
 import useBoardSlugLinkResolver from '../hooks/useBoardSlugLinkProvider'
 
@@ -39,14 +40,9 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
   return (
     <ScreenMain>
       <h1>{t('unsealed-ballot.header')}</h1>
-      <ul className="mb-[20px]" data-cy="ballot-choices">
-        {contestSelections.map(cs => (
-          <li key={cs.reference} className="dark:text-white">
-            <span className="font-bold dark:text-white">{cs.title}: </span>
-            {cs.optionSelections[0]?.title}
-          </li>
-        ))}
-      </ul>
+
+      <ContestSelections selections={contestSelections} />
+
       <button
         className="button"
         onClick={() => {
