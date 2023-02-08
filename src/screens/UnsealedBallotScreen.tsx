@@ -20,16 +20,11 @@ const UnsealedBallotScreen: React.FC<UnsealedBallotScreenProps> = () => {
 
   useEffect(() => {
     try {
-      console.debug('Decrypting...')
       const decryptedBallot = VerifierClient.decryptBallot()
-      console.debug(decryptedBallot)
-      console.debug('Getting readable ballot...')
       const ballot = VerifierClient.getReadableContestSelections(
         decryptedBallot,
         'en'
       )
-      console.debug('Got ballot:')
-      console.debug(ballot)
       setContestSelections(ballot)
     } catch (e) {
       console.debug(e)
