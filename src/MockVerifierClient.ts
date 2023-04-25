@@ -108,7 +108,7 @@ export default class MockVerifierClient extends AVVerifier {
 
   getReadableContestSelections(
     contestSelections: ContestSelection[],
-    locale: string
+    _locale: string
   ): ReadableContestSelection[] {
     return contestSelections.map(cs => ({
       piles: cs.piles.map((pile: SelectionPile) => ({
