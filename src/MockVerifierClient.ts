@@ -18,7 +18,7 @@ export const MOCKED_BALLOTS_DB: { [trackingCode: string]: ContestSelection[] } =
           optionSelections: [
             {
               reference: 'A',
-              text: 'Reference A'
+              text: 'Option A'
             }
           ],
         }
@@ -32,7 +32,7 @@ export const MOCKED_BALLOTS_DB: { [trackingCode: string]: ContestSelection[] } =
           optionSelections: [
             {
               reference: 'B',
-              text: 'Reference B'
+              text: 'Option B'
             }
           ],
         }
@@ -46,7 +46,7 @@ export const MOCKED_BALLOTS_DB: { [trackingCode: string]: ContestSelection[] } =
           optionSelections: [
             {
               reference: 'C',
-              text: 'Reference C'
+              text: 'Option C'
             }
           ],
         }
