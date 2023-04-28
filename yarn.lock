@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@aion-dk/js-client@3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@aion-dk/js-client/-/js-client-3.0.1.tgz#00d7d092d8619fc5acc36730ce9d09646bc0c641"
-  integrity sha512-hga7lYCWo4Y3cYXaIHHcc2vo7fVptLZ/f427eV5C2TDgr9ZC9jyjVatOdI6zpKLzoPbQbJ7e3w8Oc7+LP/NHLw==
+"@aion-dk/js-client@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@aion-dk/js-client/-/js-client-3.0.2.tgz#3f189e0dfc36a4cabbf348113641440952abacd7"
+  integrity sha512-4RocXLFSSpgGpwJb3TX5bxySnduW636si+4jC3UIK/NMgbzkfpvJcH6S4jRmycK1Ih+6qzRJ3PpblN3VEnxzjg==
   dependencies:
     axios "^0.25.0"
     base-x "^4.0.0"
