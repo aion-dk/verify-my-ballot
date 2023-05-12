@@ -27,7 +27,6 @@
   "scripts": {
     "start": "PORT=3005 react-scripts start",
     "start-test": "REACT_APP_TESTING=true PORT=3005 react-scripts start",
-    "start-strict": "REACT_APP_STRICT=true react-scripts start",
     "build": "react-scripts build",
     "test": "cypress run-ct",
     "test-dev": "cypress open-ct",
