@@ -11,7 +11,6 @@ This is the repository regarding the example implementation of a VerifyMyBallot 
   - [Running](#running)
   - [Building](#building)
   - [Testing](#testing)
-  - [Strict mode](#strict-mode)
   - [Documentation](#documentation)
     - [JS Client](#js-client)
       - [MockVerifierClient](#mockverifierclient)
@@ -82,14 +81,6 @@ You can also open the test development environment with hot-reloading with:
 
 ```bash
 yarn e2e-dev
-```
-
-## Strict mode
-
-By default the web app is being run without Strict Mode enabled in development - if you wish to test out the app in strict mode, you can do so by running:
-
-```bash
-yarn start-strict
 ```
 
 ## Documentation
