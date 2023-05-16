@@ -28,15 +28,6 @@ workflows:
             - "slack"
           requires:
             - cypress/run
-      - deployment-sandbox01:
-          context:
-            - "sandbox-deployment"
-          requires:
-            - build-and-push
-          filters:
-            branches:
-              only:
-                - main
 
 jobs:
   build-and-push:
@@ -81,21 +72,3 @@ jobs:
       - slack/notify:
           event: pass
           template: success_tagged_deploy_1
-
-  deployment-sandbox01:
-    circleci_ip_ranges: true
-    docker:
-      - image: cimg/base:current
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "65:09:e9:f1:ab:b3:ff:43:b8:61:59:74:ce:08:2d:05"
-      - checkout
-      - run:
-          name: Deploy verify-my-ballot to sandbox01
-          command: |
-            sudo apt-get update && sudo apt-get install -y rsync
-            ssh-keyscan ${sandbox_ip} >> "${HOME}"/.ssh/known_hosts
-            sed -i "s/PLACEHOLDER/${CIRCLE_SHA1}/g" deployment/sandbox.docker-compose.yml
-            rsync --chown=${sandbox_username}:docker --chmod=660 -av deployment/sandbox.docker-compose.yml ${sandbox_username}@${sandbox_ip}:/docker/us/services/vmb.yml
-            ssh ${sandbox_username}@${sandbox_ip} '/docker/docker-login.sh; /docker/us/run.sh vmb'

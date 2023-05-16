@@ -8,4 +8,3 @@ services:
       REACT_APP_BASE_ELECTION_URL: "https://dbb.avx.demo.assembly-voting.com/"
       REACT_APP_TIMEOUT_REMINDER_TIME: 5
       REACT_APP_TIMEOUT_RETRIES: 30
-      REACT_APP_STRICT: false

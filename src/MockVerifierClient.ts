@@ -1,37 +1,69 @@
-import { AVVerifier, ElectionConfig } from '@aion-dk/js-client'
+import { AVVerifier } from '@aion-dk/js-client'
 import {
   ContestSelection,
+  SelectionPile,
+  OptionSelection,
   ReadableContestSelection,
 } from '@aion-dk/js-client/dist/lib/av_client/types'
 import { MOCK_RESPONSE_MS } from './constants'
 
 export const MOCKED_BALLOTS_DB: { [trackingCode: string]: ContestSelection[] } =
   {
-    '12345': [
-      {
-        optionSelections: [{ reference: 'A' }],
-        reference: '1',
-      },
-      {
-        optionSelections: [{ reference: 'B' }],
-        reference: '2',
-      },
-      {
-        optionSelections: [{ reference: 'C' }],
-        reference: '3',
-      },
-    ],
-  }
+  '12345': [
+    {
+      reference: '1',
+      piles: [
+        {
+          multiplier: 1,
+          optionSelections: [
+            {
+              reference: 'A',
+              text: 'Option A'
+            }
+          ],
+        }
+      ]
+    },
+    {
+      reference: '2',
+      piles: [
+        {
+          multiplier: 1,
+          optionSelections: [
+            {
+              reference: 'B',
+              text: 'Option B'
+            }
+          ],
+        }
+      ]
+    },
+    {
+      reference: '3',
+      piles: [
+        {
+          multiplier: 1,
+          optionSelections: [
+            {
+              reference: 'C',
+              text: 'Option C'
+            }
+          ],
+        }
+      ]
+    },
+  ],
+}
 
 export default class MockVerifierClient extends AVVerifier {
   private _init = false
   private _trackingCode = ''
 
-  public initialize(electionConfig: ElectionConfig): Promise<void>
+  public initialize(electionConfig: any): Promise<void>
   public initialize(): Promise<void>
 
-  public initialize(electionConfig?: ElectionConfig) {
-    return new Promise<void>((resolve, reject) => {
+  public initialize(_electionConfig?: any) {
+    return new Promise<void>((resolve, _reject) => {
       this._init = true
       resolve()
     })
@@ -73,15 +105,19 @@ export default class MockVerifierClient extends AVVerifier {
     if (ballot) return ballot
     else throw new Error('Ballot not found')
   }
+
   getReadableContestSelections(
     contestSelections: ContestSelection[],
-    locale: string
+    _locale: string
   ): ReadableContestSelection[] {
     return contestSelections.map(cs => ({
-      optionSelections: cs.optionSelections.map(os => ({
-        reference: os.reference,
-        title: `Option ${os.reference}`,
-        text: os.text,
+      piles: cs.piles.map((pile: SelectionPile) => ({
+        multiplier: 1,
+        optionSelections: pile.optionSelections.map((os: OptionSelection) => ({
+          reference: os.reference,
+          title: `Option ${os.reference}`,
+          text: os.text,
+        })),
       })),
       reference: cs.reference,
       title: `Contest ${cs.reference}`,
