@@ -59,7 +59,7 @@
     "cypress": "^9.7.0",
     "cypress-audit": "^1.1.0",
     "cypress-plugin-tab": "^1.0.5",
-    "postcss": "^8.4.14",
+    "postcss": "^8.4.31",
     "tailwindcss": "^3.0.24"
   }
 }
